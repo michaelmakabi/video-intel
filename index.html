@@ -50,75 +50,41 @@
   ::-webkit-scrollbar-track{background:transparent}
   ::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:5px}
   ::-webkit-scrollbar-thumb:hover{background:var(--accent)}
-
-  /* ===== Layout ===== */
   .app{display:grid;grid-template-rows:auto 1fr auto;min-height:100vh}
-
-  /* ===== Header ===== */
-  header.bar{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:18px 32px;border-bottom:1px solid var(--line);background:rgba(250,248,243,.85);
-    backdrop-filter:blur(10px);position:sticky;top:0;z-index:50;
-  }
+  header.bar{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;border-bottom:1px solid var(--line);background:rgba(250,248,243,.85);backdrop-filter:blur(10px);position:sticky;top:0;z-index:50}
   .brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit}
-  .brand .logo{
-    width:42px;height:42px;border-radius:10px;background:var(--surface);
-    display:grid;place-items:center;border:1px solid var(--line);box-shadow:var(--shadow-sm);
-  }
+  .brand .logo{width:42px;height:42px;border-radius:10px;background:var(--surface);display:grid;place-items:center;border:1px solid var(--line);box-shadow:var(--shadow-sm)}
   .brand .logo svg{width:22px;height:22px;color:var(--accent)}
   .brand .wordmark{display:flex;flex-direction:column;line-height:1.1}
   .brand .wordmark .top{font-family:var(--serif);font-weight:500;font-size:18px;letter-spacing:-0.01em}
   .brand .wordmark .top .accent{color:var(--accent);font-style:italic}
   .brand .wordmark .bottom{font-size:10.5px;color:var(--txt-3);letter-spacing:.18em;text-transform:uppercase;margin-top:3px;font-weight:500}
-
   nav.menu{display:flex;align-items:center;gap:2px}
-  nav.menu a{
-    color:var(--txt-2);text-decoration:none;font-size:13.5px;font-weight:500;padding:8px 14px;border-radius:6px;transition:all .15s;letter-spacing:-0.005em;
-  }
+  nav.menu a{color:var(--txt-2);text-decoration:none;font-size:13.5px;font-weight:500;padding:8px 14px;border-radius:6px;transition:all .15s;letter-spacing:-0.005em}
   nav.menu a:hover{color:var(--txt);background:var(--surface-2)}
   nav.menu a.active{color:var(--accent);background:var(--accent-soft)}
   nav.menu .divider{width:1px;height:20px;background:var(--line);margin:0 8px}
-
   main{display:grid;grid-template-columns:360px 1fr;min-height:0}
   @media(max-width:900px){main{grid-template-columns:1fr}}
-
-  /* ===== Sidebar ===== */
-  aside.sidebar{
-    border-right:1px solid var(--line);background:var(--surface);
-    display:flex;flex-direction:column;min-height:0;
-  }
+  aside.sidebar{border-right:1px solid var(--line);background:var(--surface);display:flex;flex-direction:column;min-height:0}
   .input-row{padding:20px;border-bottom:1px solid var(--line)}
   .input-row .label{font-size:10.5px;color:var(--txt-3);letter-spacing:.16em;text-transform:uppercase;font-weight:600;margin-bottom:8px}
   .input-row form{display:flex;gap:8px}
-  .input-row input{
-    flex:1;background:var(--bg);border:1px solid var(--line-2);color:var(--txt);
-    padding:11px 14px;border-radius:8px;font-size:13.5px;font-family:var(--mono);outline:none;transition:all .15s;
-  }
+  .input-row input{flex:1;background:var(--bg);border:1px solid var(--line-2);color:var(--txt);padding:11px 14px;border-radius:8px;font-size:13.5px;font-family:var(--mono);outline:none;transition:all .15s}
   .input-row input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
   .input-row input::placeholder{color:var(--txt-3)}
-  .input-row button{
-    background:var(--accent);color:#fff;border:none;padding:0 18px;border-radius:8px;font-weight:600;font-size:13px;cursor:pointer;letter-spacing:-0.005em;transition:all .15s;
-  }
+  .input-row button{background:var(--accent);color:#fff;border:none;padding:0 18px;border-radius:8px;font-weight:600;font-size:13px;cursor:pointer;letter-spacing:-0.005em;transition:all .15s}
   .input-row button:hover{background:var(--accent-2)}
   .input-row button:disabled{opacity:.5;cursor:not-allowed}
-
   .filters{display:flex;gap:6px;padding:12px 20px;border-bottom:1px solid var(--line);background:var(--surface);flex-wrap:wrap}
-  .filters .chip{
-    background:transparent;border:1px solid var(--line);color:var(--txt-2);
-    padding:5px 11px;border-radius:99px;font-size:11.5px;cursor:pointer;font-weight:500;transition:all .15s;
-  }
+  .filters .chip{background:transparent;border:1px solid var(--line);color:var(--txt-2);padding:5px 11px;border-radius:99px;font-size:11.5px;cursor:pointer;font-weight:500;transition:all .15s}
   .filters .chip.active{background:var(--txt);color:var(--bg);border-color:var(--txt)}
   .filters .chip:hover:not(.active){border-color:var(--accent);color:var(--accent)}
-
   .list{flex:1;overflow:auto;background:var(--surface)}
-  .item{
-    padding:14px 20px;border-bottom:1px solid var(--line);cursor:pointer;transition:background .12s;display:flex;gap:12px;align-items:flex-start;
-  }
+  .item{padding:14px 20px;border-bottom:1px solid var(--line);cursor:pointer;transition:background .12s;display:flex;gap:12px;align-items:flex-start}
   .item:hover{background:var(--surface-2)}
   .item.selected{background:var(--accent-soft);border-left:3px solid var(--accent);padding-left:17px}
-  .item .pp{
-    flex-shrink:0;width:30px;height:30px;border-radius:7px;display:grid;place-items:center;font-size:10px;font-weight:700;letter-spacing:.05em;
-  }
+  .item .pp{flex-shrink:0;width:30px;height:30px;border-radius:7px;display:grid;place-items:center;font-size:10px;font-weight:700;letter-spacing:.05em}
   .pp-youtube{background:#fdebec;color:#c4334b}
   .pp-tiktok{background:#e6f4f8;color:#236f87}
   .pp-instagram{background:#fbe9f4;color:#a4448a}
@@ -133,40 +99,25 @@
   .d-done{background:var(--green)}
   .d-failed{background:var(--red)}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-
   .empty{padding:48px 24px;text-align:center;color:var(--txt-3);font-size:13px;line-height:1.6}
   .empty .big{color:var(--txt-2);font-family:var(--serif);font-size:17px;font-weight:500;margin-bottom:6px;letter-spacing:-0.01em}
-
-  /* ===== Detail ===== */
   section.detail{overflow:auto;padding:48px 56px;max-width:1000px;width:100%;background:var(--bg)}
   @media(max-width:900px){section.detail{padding:28px 22px}}
-
-  .detail-empty{
-    height:100%;display:grid;place-items:center;color:var(--txt-3);text-align:center;padding:60px 40px;
-  }
+  .detail-empty{height:100%;display:grid;place-items:center;color:var(--txt-3);text-align:center;padding:60px 40px}
   .detail-empty .hero{max-width:580px}
   .detail-empty .eyebrow{font-size:11px;color:var(--accent);font-weight:600;letter-spacing:.2em;text-transform:uppercase;margin-bottom:16px}
-  .detail-empty h1{
-    font-family:var(--serif);font-size:46px;line-height:1.05;margin:0 0 18px;color:var(--txt);
-    font-weight:400;letter-spacing:-0.025em;font-variation-settings:"opsz" 144;
-  }
+  .detail-empty h1{font-family:var(--serif);font-size:46px;line-height:1.05;margin:0 0 18px;color:var(--txt);font-weight:400;letter-spacing:-0.025em;font-variation-settings:"opsz" 144}
   .detail-empty h1 em{font-style:italic;color:var(--accent);font-weight:400}
   .detail-empty .lede{font-size:16px;line-height:1.65;color:var(--txt-2);margin:0 auto;max-width:520px}
   .detail-empty .examples{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:32px}
   .detail-empty .examples .lbl{color:var(--txt-3);font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-right:6px;align-self:center}
   .detail-empty .example{background:var(--surface);border:1px solid var(--line);padding:8px 14px;border-radius:99px;font-size:12.5px;color:var(--txt-2);cursor:pointer;font-family:var(--mono);transition:all .15s}
   .detail-empty .example:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
-
-  .detail-empty .feat{
-    margin-top:48px;padding-top:32px;border-top:1px solid var(--line);
-    display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:left;
-  }
+  .detail-empty .feat{margin-top:48px;padding-top:32px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:left}
   @media(max-width:700px){.detail-empty .feat{grid-template-columns:1fr}}
   .feat-card .num{font-family:var(--serif);font-size:13px;color:var(--accent);font-weight:600;font-style:italic;margin-bottom:8px}
   .feat-card h4{margin:0 0 6px;font-size:14px;color:var(--txt);font-weight:600}
   .feat-card p{margin:0;font-size:13px;line-height:1.5;color:var(--txt-2)}
-
-  /* ===== Result detail ===== */
   .card-eyebrow{font-size:10.5px;color:var(--txt-3);font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px;display:flex;gap:10px;align-items:center}
   .card-eyebrow .platform-tag{padding:3px 9px;border-radius:99px;font-size:10px;background:var(--surface);border:1px solid var(--line);color:var(--txt-2)}
   .card-title{font-family:var(--serif);font-size:34px;font-weight:500;letter-spacing:-0.02em;margin:0 0 12px;line-height:1.15;color:var(--txt)}
@@ -174,117 +125,52 @@
   .card-meta a{color:var(--txt-2);text-decoration:none;border-bottom:1px solid var(--line-2);transition:all .15s}
   .card-meta a:hover{color:var(--accent);border-color:var(--accent)}
   .card-meta .sep{color:var(--line-2)}
-
   .card-actions{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px;padding-bottom:24px;border-bottom:1px solid var(--line)}
-  .btn{
-    display:inline-flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--line);color:var(--txt);
-    padding:9px 14px;border-radius:8px;font-size:13px;cursor:pointer;font-weight:500;transition:all .15s;text-decoration:none;font-family:var(--sans);
-  }
+  .btn{display:inline-flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--line);color:var(--txt);padding:9px 14px;border-radius:8px;font-size:13px;cursor:pointer;font-weight:500;transition:all .15s;text-decoration:none;font-family:var(--sans)}
   .btn:hover{border-color:var(--accent);color:var(--accent);background:var(--surface)}
   .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
   .btn.primary:hover{background:var(--accent-2);border-color:var(--accent-2);color:#fff}
   .btn.danger:hover{border-color:var(--red);color:var(--red)}
   .btn.ghost{background:transparent;border-color:transparent}
   .btn.ghost:hover{background:var(--surface)}
-
   .section{margin-bottom:40px}
-  .section h3{
-    font-family:var(--serif);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 14px;
-  }
+  .section h3{font-family:var(--serif);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 14px}
   .section .body{font-size:15px;line-height:1.7;color:var(--txt)}
   .section ul{margin:0;padding:0 0 0 20px}
   .section li{margin-bottom:8px;line-height:1.6}
   .section li::marker{color:var(--accent)}
-
-  .cta-card{
-    background:linear-gradient(135deg,var(--accent-soft),rgba(245,234,217,0.3));
-    border:1px solid var(--accent);border-radius:14px;padding:24px 26px;
-    box-shadow:var(--shadow-sm);
-  }
+  .cta-card{background:linear-gradient(135deg,var(--accent-soft),rgba(245,234,217,0.3));border:1px solid var(--accent);border-radius:14px;padding:24px 26px;box-shadow:var(--shadow-sm)}
   .cta-card .label{font-family:var(--serif);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:10px}
   .cta-card .text{font-size:16px;line-height:1.6;color:var(--txt);font-weight:500}
-
-  .transcript{
-    background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px 22px;
-    font-family:var(--mono);font-size:13px;line-height:1.7;color:var(--txt);
-    max-height:340px;overflow:auto;white-space:pre-wrap;word-break:break-word;
-    box-shadow:var(--shadow-sm);
-  }
+  .transcript{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px 22px;font-family:var(--mono);font-size:13px;line-height:1.7;color:var(--txt);max-height:340px;overflow:auto;white-space:pre-wrap;word-break:break-word;box-shadow:var(--shadow-sm)}
   .transcript-meta{font-size:11px;color:var(--txt-3);font-family:var(--mono);margin-bottom:8px}
-
   .verify-row{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);font-size:13.5px}
   .verify-row:last-child{border-bottom:none}
-  .verify-status{
-    flex-shrink:0;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
-    padding:3px 9px;border-radius:99px;margin-top:2px;
-  }
+  .verify-status{flex-shrink:0;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;padding:3px 9px;border-radius:99px;margin-top:2px}
   .vs-verified{background:var(--sage-soft);color:var(--green)}
   .vs-unverified{background:#fdf4e0;color:var(--warning)}
   .vs-contradicted{background:#fbe9e9;color:var(--red)}
-
-  /* ===== Modal ===== */
-  .modal-bg{
-    position:fixed;inset:0;background:rgba(26,22,18,.4);z-index:100;
-    display:grid;place-items:center;padding:20px;backdrop-filter:blur(6px);
-  }
-  .modal{
-    background:var(--surface);border:1px solid var(--line);border-radius:16px;
-    max-width:780px;width:100%;max-height:88vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-lg);
-  }
-  .modal header{
-    padding:20px 26px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;
-  }
+  .modal-bg{position:fixed;inset:0;background:rgba(26,22,18,.4);z-index:100;display:grid;place-items:center;padding:20px;backdrop-filter:blur(6px)}
+  .modal{background:var(--surface);border:1px solid var(--line);border-radius:16px;max-width:780px;width:100%;max-height:88vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-lg)}
+  .modal header{padding:20px 26px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
   .modal header h2{margin:0;font-family:var(--serif);font-size:20px;font-weight:500;color:var(--txt);letter-spacing:-0.01em}
   .modal header .close{background:transparent;border:none;color:var(--txt-3);font-size:22px;cursor:pointer;padding:4px 8px;border-radius:6px;line-height:1}
   .modal header .close:hover{color:var(--txt);background:var(--surface-2)}
   .modal .content{padding:24px 26px;overflow:auto;flex:1}
-  .modal .content textarea{
-    width:100%;min-height:380px;background:var(--bg);border:1px solid var(--line-2);color:var(--txt);
-    border-radius:8px;padding:14px;font-family:var(--mono);font-size:12.5px;line-height:1.6;resize:vertical;outline:none;
-  }
+  .modal .content textarea{width:100%;min-height:380px;background:var(--bg);border:1px solid var(--line-2);color:var(--txt);border-radius:8px;padding:14px;font-family:var(--mono);font-size:12.5px;line-height:1.6;resize:vertical;outline:none}
   .modal .content textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
-  .modal footer{
-    padding:16px 26px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--surface-2);
-  }
+  .modal footer{padding:16px 26px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--surface-2)}
   .hint{font-size:12px;color:var(--txt-3);line-height:1.55}
-
-  /* ===== Mode banner ===== */
-  .mode-banner{
-    background:var(--accent-soft);border:1px solid var(--accent);border-radius:12px;padding:14px 18px;margin-bottom:28px;
-    display:flex;align-items:flex-start;gap:14px;
-  }
-  .mode-banner .icon{font-size:18px;margin-top:1px;color:var(--accent)}
-  .mode-banner .text{flex:1;font-size:13.5px;line-height:1.55;color:var(--txt)}
-  .mode-banner .text b{color:var(--accent)}
-  .mode-banner button{
-    background:var(--surface);border:1px solid var(--line-2);color:var(--txt-2);padding:6px 12px;border-radius:7px;font-size:12px;cursor:pointer;font-weight:500;
-  }
-  .mode-banner button:hover{border-color:var(--accent);color:var(--accent)}
-
-  /* ===== Footer ===== */
-  footer.foot{
-    padding:22px 32px;border-top:1px solid var(--line);background:var(--surface);
-    display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--txt-3);
-  }
+  footer.foot{padding:22px 32px;border-top:1px solid var(--line);background:var(--surface);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--txt-3)}
   .foot-brand{display:flex;align-items:center;gap:8px}
   .foot-brand a{color:var(--accent);text-decoration:none;font-weight:600;font-family:var(--serif);font-style:italic}
   .foot-brand a:hover{text-decoration:underline}
-
-  /* ===== Toast ===== */
   .toast-wrap{position:fixed;top:90px;right:24px;display:flex;flex-direction:column;gap:8px;z-index:200}
-  .toast{
-    background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);color:var(--txt);
-    padding:12px 18px;border-radius:8px;font-size:13px;box-shadow:var(--shadow-lg);min-width:260px;animation:slideIn .25s;
-  }
+  .toast{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);color:var(--txt);padding:12px 18px;border-radius:8px;font-size:13px;box-shadow:var(--shadow-lg);min-width:260px;animation:slideIn .25s}
   .toast.error{border-left-color:var(--red)}
   .toast.success{border-left-color:var(--green)}
   @keyframes slideIn{from{transform:translateX(20px);opacity:0}to{transform:translateX(0);opacity:1}}
-
-  /* ===== Spinner ===== */
-  .spinner{
-    display:inline-block;width:14px;height:14px;border:2px solid var(--line-2);border-top-color:var(--accent);
-    border-radius:50%;animation:spin .8s linear infinite;
-  }
+  .spinner{display:inline-block;width:14px;height:14px;border:2px solid var(--line-2);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
@@ -298,7 +184,8 @@ import { createRoot } from 'https://esm.sh/react-dom@18.3.1/client';
 const CONFIG = {
   SUPABASE_URL: 'https://vaerkevjrupxdbgrxfkk.supabase.co',
   SUPABASE_ANON_KEY: 'sb_publishable_elUUmJXjGMXfJ8RBhZkBvA_yTeSjXR_',
-  BACKEND_URL: localStorage.getItem('vi_backend_url') || '',
+  // Hosted backend on Fly.io. Override via Settings if needed.
+  BACKEND_URL: localStorage.getItem('vi_backend_url') ?? 'https://loren-video-intel.fly.dev',
 };
 
 const sb = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
@@ -534,24 +421,6 @@ const Detail = ({ link, onUpdate, onDelete, onShowPrompt, onPasteJSON, onShowLoc
 
   return (
     <section className="detail">
-      {!hasBackend && (
-        <div className="mode-banner">
-          <div className="icon">●</div>
-          <div className="text">
-            <b>Local mode active.</b> No transcription backend configured.
-            Use "Run locally" to copy a PowerShell command, run it on your Windows box,
-            then "Paste JSON result" to drop the transcript back here.
-          </div>
-          <button onClick={()=>{
-            const url = prompt('Backend URL (Render service, etc.) — leave empty for local mode:', CONFIG.BACKEND_URL || '');
-            if (url !== null) {
-              localStorage.setItem('vi_backend_url', url);
-              location.reload();
-            }
-          }}>Configure backend</button>
-        </div>
-      )}
-
       <div className="card-eyebrow">
         <span className="platform-tag">{(link.platform || 'unknown').toUpperCase()}</span>
         <span className={'dot d-' + (link.status||'pending')} />
@@ -713,78 +582,12 @@ const PromptModal = ({ link, onClose, toast }) => {
   );
 };
 
-const LocalCmdModal = ({ link, onClose, toast }) => {
-  const cmd = buildLocalPowershell(link.url);
-  return (
-    <div className="modal-bg" onClick={onClose}>
-      <div className="modal" onClick={e=>e.stopPropagation()}>
-        <header>
-          <h2>Run locally</h2>
-          <button className="close" onClick={onClose}>×</button>
-        </header>
-        <div className="content">
-          <div className="hint" style={{marginBottom:12}}>
-            Copy this PowerShell command, run on your Windows box. The transcript JSON pipes to your clipboard. Then click "Paste JSON result".
-          </div>
-          <textarea value={cmd} readOnly style={{minHeight:120}} />
-        </div>
-        <footer>
-          <span className="hint">PowerShell on Windows</span>
-          <button className="btn primary" onClick={()=>{ navigator.clipboard.writeText(cmd); toast('Command copied','success'); }}>
-            <Icon name="copy"/> Copy command
-          </button>
-        </footer>
-      </div>
-    </div>
-  );
-};
-
-const PasteJSONModal = ({ link, onClose, onSubmit, toast }) => {
-  const [text, setText] = useState('');
-  const [summary, setSummary] = useState('');
-  const [cta, setCta] = useState('');
-
-  const handleSubmit = async () => {
-    let parsed;
-    try { parsed = JSON.parse(text); } catch (e) { toast('Not valid JSON: ' + e.message, 'error'); return; }
-    onSubmit(link.id, parsed, { summary, cta });
-    onClose();
-  };
-
-  return (
-    <div className="modal-bg" onClick={onClose}>
-      <div className="modal" onClick={e=>e.stopPropagation()}>
-        <header>
-          <h2>Paste transcript JSON</h2>
-          <button className="close" onClick={onClose}>×</button>
-        </header>
-        <div className="content">
-          <div className="hint" style={{marginBottom:12}}>
-            Paste the JSON output from <span className="mono">transcribe.py --json</span>. Optionally add summary + CTA below.
-          </div>
-          <textarea value={text} onChange={e=>setText(e.target.value)} placeholder='{"platform":"youtube","title":"...","transcript":"..."}' style={{minHeight:200}} />
-          <div style={{display:'grid',gridTemplateColumns:'1fr',gap:10,marginTop:14}}>
-            <textarea value={summary} onChange={e=>setSummary(e.target.value)} placeholder="Optional summary (3–6 sentences)…" style={{minHeight:60}} />
-            <textarea value={cta} onChange={e=>setCta(e.target.value)} placeholder="Optional CTA — what to do with this in the next 24h…" style={{minHeight:60}} />
-          </div>
-        </div>
-        <footer>
-          <span className="hint">JSON only — see transcribe.py output format</span>
-          <button className="btn primary" onClick={handleSubmit}>Save</button>
-        </footer>
-      </div>
-    </div>
-  );
-};
-
 const SettingsModal = ({ onClose, toast }) => {
-  const [backend, setBackend] = useState(CONFIG.BACKEND_URL);
-  const [openaiKey, setOpenaiKey] = useState(localStorage.getItem('vi_openai_key') || '');
+  const [backend, setBackend] = useState(localStorage.getItem('vi_backend_url') ?? '');
 
   const save = () => {
-    localStorage.setItem('vi_backend_url', backend);
-    if (openaiKey) localStorage.setItem('vi_openai_key', openaiKey);
-    else localStorage.removeItem('vi_openai_key');
+    if (backend) localStorage.setItem('vi_backend_url', backend);
+    else localStorage.removeItem('vi_backend_url');
     toast('Settings saved — reloading','success');
     setTimeout(()=>location.reload(), 600);
   };
@@ -800,17 +603,14 @@ const SettingsModal = ({ onClose, toast }) => {
           <div style={{display:'grid',gap:18}}>
             <div>
               <label style={{fontSize:11,color:'var(--txt-3)',display:'block',marginBottom:6,letterSpacing:'.16em',textTransform:'uppercase',fontWeight:600}}>
-                Backend URL (transcription service)
+                Backend URL override
               </label>
-              <input type="text" value={backend} onChange={e=>setBackend(e.target.value)} placeholder="https://video-intel-backend.onrender.com" style={{width:'100%',background:'var(--bg)',border:'1px solid var(--line-2)',color:'var(--txt)',padding:'10px 14px',borderRadius:8,fontFamily:'var(--mono)',fontSize:13,outline:'none'}} />
-              <div className="hint" style={{marginTop:6}}>Empty = local mode (run transcribe.py on your Windows box). Once Render/Fly/HF Space is deployed, paste the URL.</div>
+              <input type="text" value={backend} onChange={e=>setBackend(e.target.value)} placeholder="https://loren-video-intel.fly.dev (default)" style={{width:'100%',background:'var(--bg)',border:'1px solid var(--line-2)',color:'var(--txt)',padding:'10px 14px',borderRadius:8,fontFamily:'var(--mono)',fontSize:13,outline:'none'}} />
+              <div className="hint" style={{marginTop:6}}>Leave empty to use the default Fly.io backend. Override only if you've deployed elsewhere.</div>
             </div>
-            <div>
-              <label style={{fontSize:11,color:'var(--txt-3)',display:'block',marginBottom:6,letterSpacing:'.16em',textTransform:'uppercase',fontWeight:600}}>
-                OpenAI API key (optional)
-              </label>
-              <input type="password" value={openaiKey} onChange={e=>setOpenaiKey(e.target.value)} placeholder="sk-..." style={{width:'100%',background:'var(--bg)',border:'1px solid var(--line-2)',color:'var(--txt)',padding:'10px 14px',borderRadius:8,fontFamily:'var(--mono)',fontSize:13,outline:'none'}} />
-              <div className="hint" style={{marginTop:6}}>Stored in browser localStorage only. Used for client-side summarization if backend is offline.</div>
+            <div className="hint">
+              <b>Default backend:</b> https://loren-video-intel.fly.dev<br/>
+              <b>Status:</b> {CONFIG.BACKEND_URL || '(none — local mode)'}
             </div>
           </div>
         </div>
@@ -830,8 +630,6 @@ function App() {
   const [filter, setFilter] = useState('all');
   const [busy, setBusy] = useState(false);
   const [showPrompt, setShowPrompt] = useState(null);
-  const [showLocal, setShowLocal] = useState(null);
-  const [showPaste, setShowPaste] = useState(null);
   const [showSettings, setShowSettings] = useState(false);
   const [toasts, setToasts] = useState([]);
 
@@ -893,25 +691,6 @@ function App() {
     toast('Deleted','success');
   };
 
-  const applyPastedJson = async (id, parsed, extras) => {
-    const patch = {
-      title: parsed.title,
-      author: parsed.author,
-      duration_sec: parsed.duration_sec,
-      transcript: parsed.transcript,
-      transcript_source: parsed.transcript_source,
-      platform: parsed.platform || detectPlatform(parsed.url),
-      video_id: parsed.video_id,
-      status: 'done',
-      error: null,
-    };
-    if (extras.summary) patch.summary = extras.summary;
-    if (extras.cta) patch.call_to_action = extras.cta;
-    const { error } = await sb.from('vi_links').update(patch).eq('id', id);
-    if (error) { toast('Save failed: '+error.message,'error'); return; }
-    toast('Result saved','success');
-  };
-
   const visibleLinks = useMemo(() => {
     let out = links;
     if (activeTab === 'starred') out = out.filter(l => l.starred);
@@ -929,8 +708,7 @@ function App() {
         <Sidebar links={visibleLinks} selectedId={selectedId} onSelect={setSelectedId} onSubmit={submitUrl} busy={busy} filter={filter} setFilter={setFilter} />
         {selected ? (
           <Detail link={selected} onUpdate={updateLink} onDelete={deleteLink}
-            onShowPrompt={(l)=>setShowPrompt(l)} onShowLocalCmd={(l)=>setShowLocal(l)}
-            onPasteJSON={(l)=>setShowPaste(l)} toast={toast} />
+            onShowPrompt={(l)=>setShowPrompt(l)} toast={toast} />
         ) : (
           <DetailEmpty onExample={(u)=>submitUrl(u)} />
         )}
@@ -939,12 +717,10 @@ function App() {
         <div className="foot-brand">
           Powered by <a href="https://ai-loren.com" target="_blank" rel="noreferrer">Loren AI</a>
         </div>
-        <span>v1.1 · {links.length} {links.length===1?'video':'videos'}</span>
+        <span>v1.2 · {links.length} {links.length===1?'video':'videos'}</span>
       </footer>
       <Toast toasts={toasts} />
       {showPrompt && <PromptModal link={showPrompt} onClose={()=>setShowPrompt(null)} toast={toast}/>}
-      {showLocal && <LocalCmdModal link={showLocal} onClose={()=>setShowLocal(null)} toast={toast}/>}
-      {showPaste && <PasteJSONModal link={showPaste} onClose={()=>setShowPaste(null)} onSubmit={applyPastedJson} toast={toast}/>}
       {showSettings && <SettingsModal onClose={()=>setShowSettings(false)} toast={toast}/>}
     </div>
   );
