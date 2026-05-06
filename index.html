@@ -3,246 +3,286 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Video Intel — Loren AI</title>
-<meta name="description" content="Turn any TikTok, Instagram Reel, or YouTube link into a transcript, summary, action plan, and Claude-ready skill prompt." />
-<meta name="theme-color" content="#0a0a0a" />
-<meta property="og:title" content="Video Intel — Loren AI" />
+<title>Video Intel — by Loren AI</title>
+<meta name="description" content="Paste any TikTok, Instagram Reel, or YouTube link. Get the transcript, a clean operator summary, a concrete next action, and a one-click prompt that turns the lesson into a real Claude skill." />
+<meta name="theme-color" content="#faf8f3" />
+<meta property="og:title" content="Video Intel — by Loren AI" />
 <meta property="og:description" content="Paste a social video URL. Get transcript, summary, CTA, and a one-click Claude skill prompt." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://video-intel.ai-loren.com" />
 <meta property="og:image" content="https://video-intel.ai-loren.com/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230a0a0a'/><path d='M22 18 L46 32 L22 46 Z' fill='%23d4a574'/></svg>" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23faf8f3'/><path d='M18 14 L18 50 L34 50 M44 22 a4 4 0 1 1 0 8 a4 4 0 1 1 0 -8 z M44 30 L44 50' stroke='%23b8763a' stroke-width='4' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <style>
   *,*::before,*::after{box-sizing:border-box}
   :root{
-    --bg:#0a0a0a;
-    --bg-1:#101010;
-    --bg-2:#161616;
-    --bg-3:#1d1d1d;
-    --line:#262626;
-    --line-2:#333;
-    --txt:#f4f4f4;
-    --txt-2:#a3a3a3;
-    --txt-3:#737373;
-    --gold:#d4a574;
-    --gold-2:#e8c89a;
-    --gold-dim:#7a5f43;
-    --green:#7fb069;
-    --red:#e57373;
-    --blue:#7eb6e8;
-    --shadow:0 12px 40px rgba(0,0,0,.5);
+    --bg:#faf8f3;
+    --surface:#ffffff;
+    --surface-2:#f4f1e9;
+    --line:#e8e3d8;
+    --line-2:#d4cdb8;
+    --txt:#1a1612;
+    --txt-2:#6b6760;
+    --txt-3:#a09b91;
+    --accent:#b8763a;
+    --accent-2:#a3672f;
+    --accent-soft:#f5ead9;
+    --sage:#6b8e7a;
+    --sage-soft:#e8efe9;
+    --green:#5d8a5d;
+    --red:#b85555;
+    --warning:#c8983f;
+    --shadow-sm:0 1px 2px rgba(26,22,18,.04);
+    --shadow:0 4px 16px rgba(26,22,18,.06), 0 1px 3px rgba(26,22,18,.04);
+    --shadow-lg:0 12px 32px rgba(26,22,18,.10), 0 4px 8px rgba(26,22,18,.06);
+    --serif:'Fraunces',Georgia,'Times New Roman',serif;
+    --sans:'Inter',system-ui,-apple-system,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
   }
-  html,body{margin:0;padding:0;background:var(--bg);color:var(--txt);font-family:'Inter',system-ui,-apple-system,sans-serif;font-feature-settings:'cv11','ss01','ss03';-webkit-font-smoothing:antialiased}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--txt);font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
   body{min-height:100vh}
   ::-webkit-scrollbar{width:10px;height:10px}
-  ::-webkit-scrollbar-track{background:var(--bg-1)}
+  ::-webkit-scrollbar-track{background:transparent}
   ::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:5px}
-  ::-webkit-scrollbar-thumb:hover{background:var(--gold-dim)}
-  .mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+  ::-webkit-scrollbar-thumb:hover{background:var(--accent)}
 
-  /* Layout */
+  /* ===== Layout ===== */
   .app{display:grid;grid-template-rows:auto 1fr auto;min-height:100vh}
+
+  /* ===== Header ===== */
   header.bar{
     display:flex;align-items:center;justify-content:space-between;
-    padding:16px 28px;border-bottom:1px solid var(--line);background:rgba(10,10,10,.75);
-    backdrop-filter:blur(12px);position:sticky;top:0;z-index:50;
+    padding:18px 32px;border-bottom:1px solid var(--line);background:rgba(250,248,243,.85);
+    backdrop-filter:blur(10px);position:sticky;top:0;z-index:50;
   }
-  .brand{display:flex;align-items:center;gap:14px}
-  .brand .mark{
-    width:38px;height:38px;border-radius:9px;background:var(--bg-3);
-    display:grid;place-items:center;border:1px solid var(--line-2);
+  .brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit}
+  .brand .logo{
+    width:42px;height:42px;border-radius:10px;background:var(--surface);
+    display:grid;place-items:center;border:1px solid var(--line);box-shadow:var(--shadow-sm);
   }
-  .brand .mark svg{width:18px;height:18px;color:var(--gold)}
-  .brand .title{font-weight:700;font-size:17px;letter-spacing:-0.01em}
-  .brand .sub{font-size:11px;color:var(--txt-3);letter-spacing:.12em;text-transform:uppercase;margin-top:2px}
+  .brand .logo svg{width:22px;height:22px;color:var(--accent)}
+  .brand .wordmark{display:flex;flex-direction:column;line-height:1.1}
+  .brand .wordmark .top{font-family:var(--serif);font-weight:500;font-size:18px;letter-spacing:-0.01em}
+  .brand .wordmark .top .accent{color:var(--accent);font-style:italic}
+  .brand .wordmark .bottom{font-size:10.5px;color:var(--txt-3);letter-spacing:.18em;text-transform:uppercase;margin-top:3px;font-weight:500}
 
-  nav.menu{display:flex;align-items:center;gap:6px}
+  nav.menu{display:flex;align-items:center;gap:2px}
   nav.menu a{
-    color:var(--txt-2);text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border-radius:7px;transition:all .15s;
+    color:var(--txt-2);text-decoration:none;font-size:13.5px;font-weight:500;padding:8px 14px;border-radius:6px;transition:all .15s;letter-spacing:-0.005em;
   }
-  nav.menu a:hover{color:var(--txt);background:var(--bg-2)}
-  nav.menu a.active{color:var(--gold);background:rgba(212,165,116,.08)}
+  nav.menu a:hover{color:var(--txt);background:var(--surface-2)}
+  nav.menu a.active{color:var(--accent);background:var(--accent-soft)}
+  nav.menu .divider{width:1px;height:20px;background:var(--line);margin:0 8px}
 
-  main{display:grid;grid-template-columns:340px 1fr;min-height:0}
+  main{display:grid;grid-template-columns:360px 1fr;min-height:0}
   @media(max-width:900px){main{grid-template-columns:1fr}}
 
+  /* ===== Sidebar ===== */
   aside.sidebar{
-    border-right:1px solid var(--line);background:var(--bg-1);
+    border-right:1px solid var(--line);background:var(--surface);
     display:flex;flex-direction:column;min-height:0;
   }
-  .input-row{padding:18px;border-bottom:1px solid var(--line)}
+  .input-row{padding:20px;border-bottom:1px solid var(--line)}
+  .input-row .label{font-size:10.5px;color:var(--txt-3);letter-spacing:.16em;text-transform:uppercase;font-weight:600;margin-bottom:8px}
   .input-row form{display:flex;gap:8px}
   .input-row input{
-    flex:1;background:var(--bg-2);border:1px solid var(--line-2);color:var(--txt);
-    padding:11px 14px;border-radius:8px;font-size:13.5px;font-family:'JetBrains Mono',monospace;outline:none;transition:border .15s;
+    flex:1;background:var(--bg);border:1px solid var(--line-2);color:var(--txt);
+    padding:11px 14px;border-radius:8px;font-size:13.5px;font-family:var(--mono);outline:none;transition:all .15s;
   }
-  .input-row input:focus{border-color:var(--gold-dim)}
+  .input-row input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
   .input-row input::placeholder{color:var(--txt-3)}
   .input-row button{
-    background:var(--gold);color:#1a1208;border:none;padding:0 16px;border-radius:8px;font-weight:600;font-size:13px;cursor:pointer;letter-spacing:.02em;transition:all .15s;
+    background:var(--accent);color:#fff;border:none;padding:0 18px;border-radius:8px;font-weight:600;font-size:13px;cursor:pointer;letter-spacing:-0.005em;transition:all .15s;
   }
-  .input-row button:hover{background:var(--gold-2)}
+  .input-row button:hover{background:var(--accent-2)}
   .input-row button:disabled{opacity:.5;cursor:not-allowed}
 
-  .filters{display:flex;gap:6px;padding:10px 18px;border-bottom:1px solid var(--line);background:var(--bg-1)}
+  .filters{display:flex;gap:6px;padding:12px 20px;border-bottom:1px solid var(--line);background:var(--surface);flex-wrap:wrap}
   .filters .chip{
-    background:transparent;border:1px solid var(--line-2);color:var(--txt-2);
+    background:transparent;border:1px solid var(--line);color:var(--txt-2);
     padding:5px 11px;border-radius:99px;font-size:11.5px;cursor:pointer;font-weight:500;transition:all .15s;
   }
-  .filters .chip.active{background:var(--gold);color:#1a1208;border-color:var(--gold)}
-  .filters .chip:hover:not(.active){border-color:var(--gold-dim);color:var(--txt)}
+  .filters .chip.active{background:var(--txt);color:var(--bg);border-color:var(--txt)}
+  .filters .chip:hover:not(.active){border-color:var(--accent);color:var(--accent)}
 
-  .list{flex:1;overflow:auto}
+  .list{flex:1;overflow:auto;background:var(--surface)}
   .item{
-    padding:14px 18px;border-bottom:1px solid var(--line);cursor:pointer;transition:background .12s;display:flex;gap:12px;align-items:flex-start;
+    padding:14px 20px;border-bottom:1px solid var(--line);cursor:pointer;transition:background .12s;display:flex;gap:12px;align-items:flex-start;
   }
-  .item:hover{background:var(--bg-2)}
-  .item.selected{background:var(--bg-2);border-left:2px solid var(--gold);padding-left:16px}
-  .item .platform-pill{
-    flex-shrink:0;width:28px;height:28px;border-radius:6px;display:grid;place-items:center;font-size:11px;font-weight:700;
+  .item:hover{background:var(--surface-2)}
+  .item.selected{background:var(--accent-soft);border-left:3px solid var(--accent);padding-left:17px}
+  .item .pp{
+    flex-shrink:0;width:30px;height:30px;border-radius:7px;display:grid;place-items:center;font-size:10px;font-weight:700;letter-spacing:.05em;
   }
-  .pill-youtube{background:#3a1a1a;color:#ff6b6b}
-  .pill-tiktok{background:#0d2329;color:#4dd0e1}
-  .pill-instagram{background:#2a1a2a;color:#e573b3}
-  .pill-other{background:var(--bg-3);color:var(--txt-3)}
+  .pp-youtube{background:#fdebec;color:#c4334b}
+  .pp-tiktok{background:#e6f4f8;color:#236f87}
+  .pp-instagram{background:#fbe9f4;color:#a4448a}
+  .pp-other{background:var(--surface-2);color:var(--txt-3)}
   .item .body{flex:1;min-width:0}
-  .item .title{font-size:13.5px;font-weight:500;color:var(--txt);overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.35}
-  .item .meta{font-size:11px;color:var(--txt-3);margin-top:4px;display:flex;gap:8px;align-items:center}
-  .item .star{color:var(--gold);font-size:13px}
-  .status-dot{width:6px;height:6px;border-radius:50%;display:inline-block}
-  .status-pending{background:#ffa726;animation:pulse 1.5s infinite}
-  .status-processing{background:var(--blue);animation:pulse 1.2s infinite}
-  .status-done{background:var(--green)}
-  .status-failed{background:var(--red)}
+  .item .ititle{font-size:13.5px;font-weight:500;color:var(--txt);overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.4}
+  .item .meta{font-size:11px;color:var(--txt-3);margin-top:4px;display:flex;gap:6px;align-items:center}
+  .item .star{color:var(--accent);font-size:13px}
+  .dot{width:6px;height:6px;border-radius:50%;display:inline-block}
+  .d-pending{background:var(--warning);animation:pulse 1.5s infinite}
+  .d-processing{background:var(--sage);animation:pulse 1.2s infinite}
+  .d-done{background:var(--green)}
+  .d-failed{background:var(--red)}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
-  .empty{padding:50px 24px;text-align:center;color:var(--txt-3);font-size:13px;line-height:1.6}
-  .empty .big{color:var(--txt-2);font-size:14px;font-weight:500;margin-bottom:6px}
+  .empty{padding:48px 24px;text-align:center;color:var(--txt-3);font-size:13px;line-height:1.6}
+  .empty .big{color:var(--txt-2);font-family:var(--serif);font-size:17px;font-weight:500;margin-bottom:6px;letter-spacing:-0.01em}
 
-  /* Main content */
-  section.detail{overflow:auto;padding:36px 48px;max-width:920px;width:100%}
-  @media(max-width:900px){section.detail{padding:24px}}
+  /* ===== Detail ===== */
+  section.detail{overflow:auto;padding:48px 56px;max-width:1000px;width:100%;background:var(--bg)}
+  @media(max-width:900px){section.detail{padding:28px 22px}}
+
   .detail-empty{
-    height:100%;display:grid;place-items:center;color:var(--txt-3);text-align:center;padding:40px;
+    height:100%;display:grid;place-items:center;color:var(--txt-3);text-align:center;padding:60px 40px;
   }
-  .detail-empty .hero{max-width:520px}
-  .detail-empty h1{font-size:28px;margin:0 0 14px;color:var(--txt);font-weight:700;letter-spacing:-0.02em}
-  .detail-empty p{font-size:15px;line-height:1.65}
-  .detail-empty .examples{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:24px}
-  .detail-empty .example{background:var(--bg-2);border:1px solid var(--line);padding:6px 12px;border-radius:99px;font-size:12px;color:var(--txt-2);cursor:pointer}
-  .detail-empty .example:hover{border-color:var(--gold-dim);color:var(--txt)}
+  .detail-empty .hero{max-width:580px}
+  .detail-empty .eyebrow{font-size:11px;color:var(--accent);font-weight:600;letter-spacing:.2em;text-transform:uppercase;margin-bottom:16px}
+  .detail-empty h1{
+    font-family:var(--serif);font-size:46px;line-height:1.05;margin:0 0 18px;color:var(--txt);
+    font-weight:400;letter-spacing:-0.025em;font-variation-settings:"opsz" 144;
+  }
+  .detail-empty h1 em{font-style:italic;color:var(--accent);font-weight:400}
+  .detail-empty .lede{font-size:16px;line-height:1.65;color:var(--txt-2);margin:0 auto;max-width:520px}
+  .detail-empty .examples{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:32px}
+  .detail-empty .examples .lbl{color:var(--txt-3);font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-right:6px;align-self:center}
+  .detail-empty .example{background:var(--surface);border:1px solid var(--line);padding:8px 14px;border-radius:99px;font-size:12.5px;color:var(--txt-2);cursor:pointer;font-family:var(--mono);transition:all .15s}
+  .detail-empty .example:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
 
-  .card-title{font-size:24px;font-weight:700;letter-spacing:-0.02em;margin:0 0 6px;line-height:1.3}
-  .card-meta{display:flex;gap:14px;flex-wrap:wrap;color:var(--txt-3);font-size:13px;margin-bottom:24px}
-  .card-meta a{color:var(--txt-2);text-decoration:none;border-bottom:1px solid var(--line-2)}
-  .card-meta a:hover{color:var(--gold)}
+  .detail-empty .feat{
+    margin-top:48px;padding-top:32px;border-top:1px solid var(--line);
+    display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:left;
+  }
+  @media(max-width:700px){.detail-empty .feat{grid-template-columns:1fr}}
+  .feat-card .num{font-family:var(--serif);font-size:13px;color:var(--accent);font-weight:600;font-style:italic;margin-bottom:8px}
+  .feat-card h4{margin:0 0 6px;font-size:14px;color:var(--txt);font-weight:600}
+  .feat-card p{margin:0;font-size:13px;line-height:1.5;color:var(--txt-2)}
+
+  /* ===== Result detail ===== */
+  .card-eyebrow{font-size:10.5px;color:var(--txt-3);font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px;display:flex;gap:10px;align-items:center}
+  .card-eyebrow .platform-tag{padding:3px 9px;border-radius:99px;font-size:10px;background:var(--surface);border:1px solid var(--line);color:var(--txt-2)}
+  .card-title{font-family:var(--serif);font-size:34px;font-weight:500;letter-spacing:-0.02em;margin:0 0 12px;line-height:1.15;color:var(--txt)}
+  .card-meta{display:flex;gap:14px;flex-wrap:wrap;color:var(--txt-3);font-size:13px;margin-bottom:28px;align-items:center}
+  .card-meta a{color:var(--txt-2);text-decoration:none;border-bottom:1px solid var(--line-2);transition:all .15s}
+  .card-meta a:hover{color:var(--accent);border-color:var(--accent)}
   .card-meta .sep{color:var(--line-2)}
 
-  .card-actions{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+  .card-actions{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px;padding-bottom:24px;border-bottom:1px solid var(--line)}
   .btn{
-    display:inline-flex;align-items:center;gap:7px;background:var(--bg-2);border:1px solid var(--line-2);color:var(--txt);
-    padding:8px 14px;border-radius:8px;font-size:13px;cursor:pointer;font-weight:500;transition:all .15s;text-decoration:none;
+    display:inline-flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--line);color:var(--txt);
+    padding:9px 14px;border-radius:8px;font-size:13px;cursor:pointer;font-weight:500;transition:all .15s;text-decoration:none;font-family:var(--sans);
   }
-  .btn:hover{border-color:var(--gold-dim);background:var(--bg-3)}
-  .btn.primary{background:var(--gold);color:#1a1208;border-color:var(--gold);font-weight:600}
-  .btn.primary:hover{background:var(--gold-2);border-color:var(--gold-2)}
+  .btn:hover{border-color:var(--accent);color:var(--accent);background:var(--surface)}
+  .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+  .btn.primary:hover{background:var(--accent-2);border-color:var(--accent-2);color:#fff}
   .btn.danger:hover{border-color:var(--red);color:var(--red)}
-  .btn.ghost{background:transparent}
+  .btn.ghost{background:transparent;border-color:transparent}
+  .btn.ghost:hover{background:var(--surface)}
 
-  .section{margin-bottom:36px}
+  .section{margin-bottom:40px}
   .section h3{
-    font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600;margin:0 0 12px;
+    font-family:var(--serif);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 14px;
   }
-  .section .body{font-size:14.5px;line-height:1.65;color:var(--txt)}
-  .section ul{margin:0;padding:0 0 0 18px}
-  .section li{margin-bottom:6px;line-height:1.55}
+  .section .body{font-size:15px;line-height:1.7;color:var(--txt)}
+  .section ul{margin:0;padding:0 0 0 20px}
+  .section li{margin-bottom:8px;line-height:1.6}
+  .section li::marker{color:var(--accent)}
 
   .cta-card{
-    background:linear-gradient(135deg,rgba(212,165,116,.08),rgba(212,165,116,.02));
-    border:1px solid var(--gold-dim);border-radius:12px;padding:20px 22px;
+    background:linear-gradient(135deg,var(--accent-soft),rgba(245,234,217,0.3));
+    border:1px solid var(--accent);border-radius:14px;padding:24px 26px;
+    box-shadow:var(--shadow-sm);
   }
-  .cta-card .label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:8px}
-  .cta-card .text{font-size:15.5px;line-height:1.6;color:var(--txt);font-weight:500}
+  .cta-card .label{font-family:var(--serif);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:10px}
+  .cta-card .text{font-size:16px;line-height:1.6;color:var(--txt);font-weight:500}
 
   .transcript{
-    background:var(--bg-1);border:1px solid var(--line);border-radius:10px;padding:18px 20px;
-    font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.7;color:var(--txt-2);
-    max-height:300px;overflow:auto;white-space:pre-wrap;word-break:break-word;
+    background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px 22px;
+    font-family:var(--mono);font-size:13px;line-height:1.7;color:var(--txt);
+    max-height:340px;overflow:auto;white-space:pre-wrap;word-break:break-word;
+    box-shadow:var(--shadow-sm);
   }
-  .transcript-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-  .transcript-source{font-size:11px;color:var(--txt-3);font-family:'JetBrains Mono',monospace}
+  .transcript-meta{font-size:11px;color:var(--txt-3);font-family:var(--mono);margin-bottom:8px}
 
-  .verify-row{display:flex;gap:12px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+  .verify-row{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);font-size:13.5px}
   .verify-row:last-child{border-bottom:none}
   .verify-status{
-    flex-shrink:0;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
-    padding:3px 8px;border-radius:99px;margin-top:2px;
+    flex-shrink:0;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
+    padding:3px 9px;border-radius:99px;margin-top:2px;
   }
-  .vs-verified{background:rgba(127,176,105,.15);color:var(--green)}
-  .vs-unverified{background:rgba(255,167,38,.15);color:#ffa726}
-  .vs-contradicted{background:rgba(229,115,115,.15);color:var(--red)}
+  .vs-verified{background:var(--sage-soft);color:var(--green)}
+  .vs-unverified{background:#fdf4e0;color:var(--warning)}
+  .vs-contradicted{background:#fbe9e9;color:var(--red)}
 
-  /* Modal */
+  /* ===== Modal ===== */
   .modal-bg{
-    position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;
-    display:grid;place-items:center;padding:20px;backdrop-filter:blur(4px);
+    position:fixed;inset:0;background:rgba(26,22,18,.4);z-index:100;
+    display:grid;place-items:center;padding:20px;backdrop-filter:blur(6px);
   }
   .modal{
-    background:var(--bg-1);border:1px solid var(--line-2);border-radius:14px;
-    max-width:760px;width:100%;max-height:88vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow);
+    background:var(--surface);border:1px solid var(--line);border-radius:16px;
+    max-width:780px;width:100%;max-height:88vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-lg);
   }
   .modal header{
-    padding:18px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;
+    padding:20px 26px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;
   }
-  .modal header h2{margin:0;font-size:17px;font-weight:600}
-  .modal header .close{background:transparent;border:none;color:var(--txt-3);font-size:22px;cursor:pointer;padding:4px 8px}
-  .modal header .close:hover{color:var(--txt)}
-  .modal .content{padding:24px;overflow:auto;flex:1}
+  .modal header h2{margin:0;font-family:var(--serif);font-size:20px;font-weight:500;color:var(--txt);letter-spacing:-0.01em}
+  .modal header .close{background:transparent;border:none;color:var(--txt-3);font-size:22px;cursor:pointer;padding:4px 8px;border-radius:6px;line-height:1}
+  .modal header .close:hover{color:var(--txt);background:var(--surface-2)}
+  .modal .content{padding:24px 26px;overflow:auto;flex:1}
   .modal .content textarea{
-    width:100%;min-height:360px;background:var(--bg-2);border:1px solid var(--line-2);color:var(--txt);
-    border-radius:8px;padding:14px;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.55;resize:vertical;
+    width:100%;min-height:380px;background:var(--bg);border:1px solid var(--line-2);color:var(--txt);
+    border-radius:8px;padding:14px;font-family:var(--mono);font-size:12.5px;line-height:1.6;resize:vertical;outline:none;
   }
+  .modal .content textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
   .modal footer{
-    padding:14px 24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px;
+    padding:16px 26px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--surface-2);
   }
   .hint{font-size:12px;color:var(--txt-3);line-height:1.55}
 
+  /* ===== Mode banner ===== */
   .mode-banner{
-    background:var(--bg-2);border:1px solid var(--line-2);border-radius:10px;padding:14px 18px;margin-bottom:24px;
+    background:var(--accent-soft);border:1px solid var(--accent);border-radius:12px;padding:14px 18px;margin-bottom:28px;
     display:flex;align-items:flex-start;gap:14px;
   }
-  .mode-banner .icon{font-size:20px;margin-top:2px}
-  .mode-banner .text{flex:1;font-size:13.5px;line-height:1.55;color:var(--txt-2)}
-  .mode-banner .text b{color:var(--txt)}
+  .mode-banner .icon{font-size:18px;margin-top:1px;color:var(--accent)}
+  .mode-banner .text{flex:1;font-size:13.5px;line-height:1.55;color:var(--txt)}
+  .mode-banner .text b{color:var(--accent)}
   .mode-banner button{
-    background:transparent;border:1px solid var(--line-2);color:var(--txt-2);padding:6px 12px;border-radius:7px;font-size:12px;cursor:pointer;
+    background:var(--surface);border:1px solid var(--line-2);color:var(--txt-2);padding:6px 12px;border-radius:7px;font-size:12px;cursor:pointer;font-weight:500;
   }
-  .mode-banner button:hover{border-color:var(--gold-dim);color:var(--txt)}
+  .mode-banner button:hover{border-color:var(--accent);color:var(--accent)}
 
+  /* ===== Footer ===== */
   footer.foot{
-    padding:18px 28px;border-top:1px solid var(--line);background:var(--bg-1);
+    padding:22px 32px;border-top:1px solid var(--line);background:var(--surface);
     display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--txt-3);
   }
-  footer.foot a{color:var(--gold);text-decoration:none;font-weight:500}
-  footer.foot a:hover{color:var(--gold-2)}
+  .foot-brand{display:flex;align-items:center;gap:8px}
+  .foot-brand a{color:var(--accent);text-decoration:none;font-weight:600;font-family:var(--serif);font-style:italic}
+  .foot-brand a:hover{text-decoration:underline}
 
-  .toast-wrap{position:fixed;top:80px;right:20px;display:flex;flex-direction:column;gap:8px;z-index:200}
+  /* ===== Toast ===== */
+  .toast-wrap{position:fixed;top:90px;right:24px;display:flex;flex-direction:column;gap:8px;z-index:200}
   .toast{
-    background:var(--bg-2);border:1px solid var(--line-2);border-left:3px solid var(--gold);color:var(--txt);
-    padding:11px 16px;border-radius:8px;font-size:13px;box-shadow:var(--shadow);min-width:240px;animation:slideIn .25s;
+    background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);color:var(--txt);
+    padding:12px 18px;border-radius:8px;font-size:13px;box-shadow:var(--shadow-lg);min-width:260px;animation:slideIn .25s;
   }
   .toast.error{border-left-color:var(--red)}
   .toast.success{border-left-color:var(--green)}
   @keyframes slideIn{from{transform:translateX(20px);opacity:0}to{transform:translateX(0);opacity:1}}
 
+  /* ===== Spinner ===== */
   .spinner{
-    display:inline-block;width:13px;height:13px;border:2px solid var(--line-2);border-top-color:var(--gold);
+    display:inline-block;width:14px;height:14px;border:2px solid var(--line-2);border-top-color:var(--accent);
     border-radius:50%;animation:spin .8s linear infinite;
   }
   @keyframes spin{to{transform:rotate(360deg)}}
@@ -277,8 +317,7 @@ const platformLabel = (p) => ({youtube:'YT',tiktok:'TT',instagram:'IG',other:'?'
 const fmtRelative = (iso) => {
   if (!iso) return '';
   const t = new Date(iso).getTime();
-  const now = Date.now();
-  const s = Math.floor((now - t) / 1000);
+  const s = Math.floor((Date.now() - t) / 1000);
   if (s < 60) return 'just now';
   if (s < 3600) return Math.floor(s/60) + 'm ago';
   if (s < 86400) return Math.floor(s/3600) + 'h ago';
@@ -294,7 +333,7 @@ const fmtDuration = (sec) => {
 
 const buildSkillPrompt = (link) => {
   const dt = new Date().toISOString().slice(0,10);
-  return `# New Skill Request — generated by Video Intel on ${dt}
+  return `# New Skill Request - generated by Video Intel on ${dt}
 
 ## Source video
 - Platform: ${link.platform || 'unknown'}
@@ -316,13 +355,13 @@ Please build a new skill in my Makabi Agent OS based on this video lesson.
 
 1. Read \`~/.claude/skills/skill-creator/SKILL.md\` first so you follow the standard skill format.
 2. Create a new skill folder: \`~/.claude/skills/<short-kebab-name>/\` with:
-   - \`SKILL.md\` — name, description (with trigger phrases), full instructions in operator voice
-   - \`scripts/\` — any helper scripts (Python preferred, Node OK) that automate the workflow
-   - \`references/\` — supporting docs (setup notes, examples)
-3. Trigger phrases must be specific to what Master Makabi would actually say when this situation comes up — not generic.
+   - \`SKILL.md\` - name, description (with trigger phrases), full instructions in operator voice
+   - \`scripts/\` - any helper scripts (Python preferred, Node OK) that automate the workflow
+   - \`references/\` - supporting docs (setup notes, examples)
+3. Trigger phrases must be specific to what Master Makabi would actually say when this situation comes up - not generic.
 4. Tie the skill's outputs concretely to one or more of: BRiX, Loren AI, 1PM AI, MTIP, BroadBridge.
 5. Register the skill in the manifest, run the smoke test, confirm \`list_skills\` surfaces it.
-6. Source transcript follows below — use it as ground truth for what the video actually said.
+6. Source transcript follows below - use it as ground truth for what the video actually said.
 
 ---
 ## TRANSCRIPT (verbatim)
@@ -355,6 +394,14 @@ const Icon = ({ name, ...props }) => {
   );
 };
 
+const Logo = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M5 4 L5 20 L13 20" />
+    <circle cx="17" cy="9" r="2" fill="currentColor" stroke="none" />
+    <path d="M17 11 L17 20" />
+  </svg>
+);
+
 const Toast = ({ toasts }) => (
   <div className="toast-wrap">
     {toasts.map(t => (
@@ -365,19 +412,18 @@ const Toast = ({ toasts }) => (
 
 const Header = ({ activeTab, setActiveTab, onSettings }) => (
   <header className="bar">
-    <div className="brand">
-      <div className="mark">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+    <a className="brand" href="https://ai-loren.com" target="_blank" rel="noreferrer">
+      <div className="logo"><Logo/></div>
+      <div className="wordmark">
+        <div className="top"><span className="accent">loren</span> AI · Tools</div>
+        <div className="bottom">Video Intel</div>
       </div>
-      <div>
-        <div className="title">Video Intel</div>
-        <div className="sub">Loren AI · Tools</div>
-      </div>
-    </div>
+    </a>
     <nav className="menu">
       <a href="#" onClick={(e)=>{e.preventDefault();setActiveTab('all')}} className={activeTab==='all'?'active':''}>All</a>
       <a href="#" onClick={(e)=>{e.preventDefault();setActiveTab('starred')}} className={activeTab==='starred'?'active':''}>Starred</a>
       <a href="#" onClick={(e)=>{e.preventDefault();setActiveTab('skills')}} className={activeTab==='skills'?'active':''}>Skill drafts</a>
+      <span className="divider"/>
       <a href="#" onClick={(e)=>{e.preventDefault();onSettings()}}>Settings</a>
     </nav>
   </header>
@@ -395,9 +441,10 @@ const Sidebar = ({ links, selectedId, onSelect, onSubmit, busy, filter, setFilte
   return (
     <aside className="sidebar">
       <div className="input-row">
+        <div className="label">Add a video</div>
         <form onSubmit={submit}>
-          <input ref={inputRef} type="text" placeholder="Paste TikTok / Reel / YouTube URL…" disabled={busy} autoFocus />
-          <button type="submit" disabled={busy}>{busy ? <span className="spinner"/> : '+ Add'}</button>
+          <input ref={inputRef} type="text" placeholder="Paste TikTok / Reel / YouTube URL" disabled={busy} autoFocus />
+          <button type="submit" disabled={busy}>{busy ? <span className="spinner"/> : 'Add'}</button>
         </form>
       </div>
       <div className="filters">
@@ -408,20 +455,20 @@ const Sidebar = ({ links, selectedId, onSelect, onSubmit, busy, filter, setFilte
       <div className="list">
         {links.length === 0 ? (
           <div className="empty">
-            <div className="big">No videos yet</div>
-            Paste a TikTok, Instagram Reel, or YouTube URL above to start.
+            <div className="big">Nothing saved yet</div>
+            Paste a TikTok, Instagram Reel, or YouTube link above to begin.
           </div>
         ) : (
           links.map(l => (
             <div key={l.id} className={'item ' + (selectedId===l.id?'selected':'')} onClick={()=>onSelect(l.id)}>
-              <div className={'platform-pill pill-' + (l.platform || 'other')}>{platformLabel(l.platform)}</div>
+              <div className={'pp pp-' + (l.platform || 'other')}>{platformLabel(l.platform)}</div>
               <div className="body">
-                <div className="title">
+                <div className="ititle">
                   {l.starred && <span className="star">★ </span>}
                   {l.title || l.url}
                 </div>
                 <div className="meta">
-                  <span className={'status-dot status-' + (l.status||'pending')} />
+                  <span className={'dot d-' + (l.status||'pending')} />
                   <span>{l.author || '—'}</span>
                   <span>·</span>
                   <span>{fmtRelative(l.created_at)}</span>
@@ -438,18 +485,36 @@ const Sidebar = ({ links, selectedId, onSelect, onSubmit, busy, filter, setFilte
 const DetailEmpty = ({ onExample }) => (
   <div className="detail-empty">
     <div className="hero">
-      <h1>Drop a video link.<br/>Get a skill.</h1>
-      <p>
-        Video Intel pulls the transcript, researches what the video claims, writes you a
-        clean summary and a concrete next step tied to your ventures, and — when the video
-        teaches a repeatable workflow — gives you a one-click prompt you can paste into
-        Claude to build that workflow as a real skill in your Agent OS.
+      <div className="eyebrow">Loren AI · Tools</div>
+      <h1>Drop a video link.<br/>Get a <em>real skill</em>.</h1>
+      <p className="lede">
+        Video Intel turns any short-form clip you save into operator-grade intelligence:
+        the transcript, what the speaker actually claimed, a concrete next step tied to
+        your ventures, and a one-click prompt that asks Claude to build the lesson into
+        a permanent skill in your Agent OS.
       </p>
       <div className="examples">
-        <span style={{color:'var(--txt-3)',fontSize:12,marginRight:6}}>Try:</span>
+        <span className="lbl">Try</span>
         <span className="example" onClick={()=>onExample('https://www.youtube.com/watch?v=jNQXAC9IVRw')}>
-          youtube.com (smoke test)
+          youtube smoke test ↗
         </span>
+      </div>
+      <div className="feat">
+        <div className="feat-card">
+          <div className="num">i.</div>
+          <h4>Transcribe</h4>
+          <p>Native captions first, Whisper as fallback. YouTube, TikTok, Instagram Reels — all handled.</p>
+        </div>
+        <div className="feat-card">
+          <div className="num">ii.</div>
+          <h4>Synthesize</h4>
+          <p>Operator-voice summary, 3–7 key points, fact-checks on numbers and claims, one concrete CTA.</p>
+        </div>
+        <div className="feat-card">
+          <div className="num">iii.</div>
+          <h4>Skillify</h4>
+          <p>If the video teaches a repeatable workflow, we draft a Claude prompt that builds it as a real skill.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -471,11 +536,11 @@ const Detail = ({ link, onUpdate, onDelete, onShowPrompt, onPasteJSON, onShowLoc
     <section className="detail">
       {!hasBackend && (
         <div className="mode-banner">
-          <div className="icon">⚡</div>
+          <div className="icon">●</div>
           <div className="text">
-            <b>Local mode active.</b> No transcription backend configured yet.
-            Click "Run locally" to copy a PowerShell command — run it on your Windows box
-            and the result auto-fills.
+            <b>Local mode active.</b> No transcription backend configured.
+            Use "Run locally" to copy a PowerShell command, run it on your Windows box,
+            then "Paste JSON result" to drop the transcript back here.
           </div>
           <button onClick={()=>{
             const url = prompt('Backend URL (Render service, etc.) — leave empty for local mode:', CONFIG.BACKEND_URL || '');
@@ -487,17 +552,17 @@ const Detail = ({ link, onUpdate, onDelete, onShowPrompt, onPasteJSON, onShowLoc
         </div>
       )}
 
+      <div className="card-eyebrow">
+        <span className="platform-tag">{(link.platform || 'unknown').toUpperCase()}</span>
+        <span className={'dot d-' + (link.status||'pending')} />
+        <span>{link.status}</span>
+      </div>
       <h1 className="card-title">{link.title || '(no title yet)'}</h1>
       <div className="card-meta">
-        <span>{link.platform || '—'}</span>
-        <span className="sep">·</span>
-        <span>{link.author || '—'}</span>
+        {link.author && <span>{link.author}</span>}
         {link.duration_sec ? <><span className="sep">·</span><span>{fmtDuration(link.duration_sec)}</span></> : null}
         <span className="sep">·</span>
         <a href={link.url} target="_blank" rel="noreferrer">view source ↗</a>
-        <span className="sep">·</span>
-        <span className={'status-dot status-' + (link.status||'pending')} style={{marginRight:4}} />
-        <span style={{color:'var(--txt-2)'}}>{link.status}</span>
       </div>
 
       <div className="card-actions">
@@ -543,7 +608,7 @@ const Detail = ({ link, onUpdate, onDelete, onShowPrompt, onPasteJSON, onShowLoc
       {isFailed && link.error && (
         <div className="section">
           <h3>Error</h3>
-          <div className="body" style={{color:'var(--red)',background:'rgba(229,115,115,.08)',padding:14,borderRadius:8,border:'1px solid rgba(229,115,115,.3)',fontFamily:'JetBrains Mono,monospace',fontSize:13}}>
+          <div className="body" style={{color:'var(--red)',background:'#fbe9e9',padding:14,borderRadius:8,border:'1px solid #f0c4c4',fontFamily:'var(--mono)',fontSize:13}}>
             {link.error}
           </div>
         </div>
@@ -599,9 +664,7 @@ const Detail = ({ link, onUpdate, onDelete, onShowPrompt, onPasteJSON, onShowLoc
               <Icon name="copy"/> copy
             </button>
           </h3>
-          <div className="transcript-header">
-            <span className="transcript-source">source: {link.transcript_source || 'unknown'}</span>
-          </div>
+          <div className="transcript-meta">source: {link.transcript_source || 'unknown'}</div>
           <div className="transcript">{link.transcript}</div>
         </div>
       )}
@@ -634,9 +697,7 @@ const PromptModal = ({ link, onClose, toast }) => {
         </header>
         <div className="content">
           <div className="hint" style={{marginBottom:12}}>
-            This prompt is auto-built from the video transcript + your summary. Edit it freely.
-            "Save" persists it to the DB. "Copy" puts it on your clipboard so you can paste it
-            into Claude or Claude Code as your next message.
+            Auto-built from the video transcript + summary. Edit freely. "Save" persists it to the DB; "Copy" puts it on your clipboard for Claude.
           </div>
           <textarea value={prompt} onChange={e=>setPrompt(e.target.value)} />
         </div>
@@ -663,8 +724,7 @@ const LocalCmdModal = ({ link, onClose, toast }) => {
         </header>
         <div className="content">
           <div className="hint" style={{marginBottom:12}}>
-            Copy this PowerShell command, run it on your Windows box. The transcript JSON
-            gets piped to your clipboard. Then click "Paste JSON result" back in the UI.
+            Copy this PowerShell command, run on your Windows box. The transcript JSON pipes to your clipboard. Then click "Paste JSON result".
           </div>
           <textarea value={cmd} readOnly style={{minHeight:120}} />
         </div>
@@ -700,8 +760,7 @@ const PasteJSONModal = ({ link, onClose, onSubmit, toast }) => {
         </header>
         <div className="content">
           <div className="hint" style={{marginBottom:12}}>
-            Paste the JSON output from <span className="mono">transcribe.py --json</span>.
-            Optionally add your own summary + CTA below.
+            Paste the JSON output from <span className="mono">transcribe.py --json</span>. Optionally add summary + CTA below.
           </div>
           <textarea value={text} onChange={e=>setText(e.target.value)} placeholder='{"platform":"youtube","title":"...","transcript":"..."}' style={{minHeight:200}} />
           <div style={{display:'grid',gridTemplateColumns:'1fr',gap:10,marginTop:14}}>
@@ -740,18 +799,18 @@ const SettingsModal = ({ onClose, toast }) => {
         <div className="content">
           <div style={{display:'grid',gap:18}}>
             <div>
-              <label style={{fontSize:12,color:'var(--txt-3)',display:'block',marginBottom:6,letterSpacing:'.1em',textTransform:'uppercase'}}>
+              <label style={{fontSize:11,color:'var(--txt-3)',display:'block',marginBottom:6,letterSpacing:'.16em',textTransform:'uppercase',fontWeight:600}}>
                 Backend URL (transcription service)
               </label>
-              <input type="text" value={backend} onChange={e=>setBackend(e.target.value)} placeholder="https://video-intel-backend.onrender.com" style={{width:'100%',background:'var(--bg-2)',border:'1px solid var(--line-2)',color:'var(--txt)',padding:'10px 14px',borderRadius:8,fontFamily:'JetBrains Mono,monospace',fontSize:13}} />
-              <div className="hint" style={{marginTop:6}}>Leave empty for local mode. Once Render is deployed, paste the service URL here.</div>
+              <input type="text" value={backend} onChange={e=>setBackend(e.target.value)} placeholder="https://video-intel-backend.onrender.com" style={{width:'100%',background:'var(--bg)',border:'1px solid var(--line-2)',color:'var(--txt)',padding:'10px 14px',borderRadius:8,fontFamily:'var(--mono)',fontSize:13,outline:'none'}} />
+              <div className="hint" style={{marginTop:6}}>Empty = local mode (run transcribe.py on your Windows box). Once Render/Fly/HF Space is deployed, paste the URL.</div>
             </div>
             <div>
-              <label style={{fontSize:12,color:'var(--txt-3)',display:'block',marginBottom:6,letterSpacing:'.1em',textTransform:'uppercase'}}>
+              <label style={{fontSize:11,color:'var(--txt-3)',display:'block',marginBottom:6,letterSpacing:'.16em',textTransform:'uppercase',fontWeight:600}}>
                 OpenAI API key (optional)
               </label>
-              <input type="password" value={openaiKey} onChange={e=>setOpenaiKey(e.target.value)} placeholder="sk-..." style={{width:'100%',background:'var(--bg-2)',border:'1px solid var(--line-2)',color:'var(--txt)',padding:'10px 14px',borderRadius:8,fontFamily:'JetBrains Mono,monospace',fontSize:13}} />
-              <div className="hint" style={{marginTop:6}}>Stored in your browser's localStorage only.</div>
+              <input type="password" value={openaiKey} onChange={e=>setOpenaiKey(e.target.value)} placeholder="sk-..." style={{width:'100%',background:'var(--bg)',border:'1px solid var(--line-2)',color:'var(--txt)',padding:'10px 14px',borderRadius:8,fontFamily:'var(--mono)',fontSize:13,outline:'none'}} />
+              <div className="hint" style={{marginTop:6}}>Stored in browser localStorage only. Used for client-side summarization if backend is offline.</div>
             </div>
           </div>
         </div>
@@ -806,8 +865,7 @@ function App() {
         try {
           await sb.from('vi_links').update({ status: 'processing' }).eq('id', data.id);
           const r = await fetch(CONFIG.BACKEND_URL.replace(/\/$/,'') + '/transcribe', {
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
+            method:'POST', headers:{'Content-Type':'application/json'},
             body: JSON.stringify({ id: data.id, url })
           });
           if (!r.ok) throw new Error('Backend returned ' + r.status);
@@ -878,8 +936,10 @@ function App() {
         )}
       </main>
       <footer className="foot">
-        <span>Powered by <a href="https://ai-loren.com" target="_blank" rel="noreferrer">LOREN AI</a></span>
-        <span>v1.0 · {links.length} {links.length===1?'video':'videos'}</span>
+        <div className="foot-brand">
+          Powered by <a href="https://ai-loren.com" target="_blank" rel="noreferrer">Loren AI</a>
+        </div>
+        <span>v1.1 · {links.length} {links.length===1?'video':'videos'}</span>
       </footer>
       <Toast toasts={toasts} />
       {showPrompt && <PromptModal link={showPrompt} onClose={()=>setShowPrompt(null)} toast={toast}/>}
