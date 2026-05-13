@@ -4,11 +4,10 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Video Intel — Loren AI</title>
-<meta name="description" content="Loren AI's video intelligence tool. Drop one or many TikTok, Reel, or YouTube links — get transcripts, operator summaries, concrete CTAs, and one-click prompts that turn lessons into Claude skills." />
+<meta name="description" content="Loren AI's video intelligence tool. Drop TikTok, Reel, or YouTube links — get transcripts, summaries, CTAs, and Claude skill prompts." />
 <meta name="theme-color" content="#ffffff" />
 <meta property="og:title" content="Video Intel — Loren AI" />
 <meta property="og:description" content="Drop video links. Get real skills." />
-<meta property="og:type" content="website" />
 <meta property="og:url" content="https://video-intel.ai-loren.com" />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%2334C4C4'/><path d='M22 18 L22 46 L42 46 M22 32 L42 32' stroke='%23ffffff' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,37 +17,23 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <style>
   :root{
-    --bg:hsl(0 0% 100%);
-    --bg-soft:hsl(210 20% 98%);
-    --bg-2:hsl(220 14% 96%);
-    --surface:hsl(0 0% 100%);
-    --line:hsl(220 14% 92%);
-    --line-2:hsl(220 14% 86%);
-    --txt:hsl(0 0% 0%);
-    --txt-2:hsl(215 16% 47%);
-    --txt-3:hsl(215 16% 65%);
-    --txt-faint:hsl(215 16% 80%);
-    --teal:hsl(178 68% 45%);
-    --teal-mid:hsl(178 68% 55%);
-    --teal-bright:hsl(178 68% 65%);
-    --teal-soft:hsl(178 68% 96%);
-    --teal-glow:hsl(178 68% 55% / 0.18);
-    --green:hsl(142 71% 38%);
-    --red:hsl(0 78% 55%);
-    --warning:hsl(38 92% 50%);
+    --bg:hsl(0 0% 100%); --bg-soft:hsl(210 20% 98%); --bg-2:hsl(220 14% 96%);
+    --surface:hsl(0 0% 100%); --line:hsl(220 14% 92%); --line-2:hsl(220 14% 86%);
+    --txt:hsl(0 0% 0%); --txt-2:hsl(215 16% 47%); --txt-3:hsl(215 16% 65%); --txt-faint:hsl(215 16% 80%);
+    --teal:hsl(178 68% 45%); --teal-mid:hsl(178 68% 55%); --teal-bright:hsl(178 68% 65%);
+    --teal-soft:hsl(178 68% 96%); --teal-glow:hsl(178 68% 55% / 0.18);
+    --green:hsl(142 71% 38%); --red:hsl(0 78% 55%); --warning:hsl(38 92% 50%);
     --shadow-sm:0 1px 2px hsl(0 0% 0% / 0.04);
     --shadow:0 4px 16px hsl(0 0% 0% / 0.06), 0 1px 3px hsl(0 0% 0% / 0.04);
     --shadow-lg:0 12px 32px hsl(0 0% 0% / 0.10);
     --shadow-teal:0 8px 32px hsl(178 68% 55% / 0.18);
     --gradient-teal:linear-gradient(135deg, hsl(178 68% 45%), hsl(178 68% 65%));
-    --radius:0.75rem;
-    --radius-sm:0.5rem;
-    --radius-lg:1rem;
-    --inter:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --radius:0.75rem; --radius-sm:0.5rem; --radius-lg:1rem;
+    --inter:'Inter',system-ui,-apple-system,sans-serif;
     --mono:'JetBrains Mono',ui-monospace,monospace;
   }
   *,*::before,*::after{box-sizing:border-box}
-  html,body{margin:0;padding:0;background:var(--bg);color:var(--txt);font-family:var(--inter);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--txt);font-family:var(--inter);-webkit-font-smoothing:antialiased}
   body{min-height:100vh}
   ::-webkit-scrollbar{width:10px;height:10px}
   ::-webkit-scrollbar-track{background:transparent}
@@ -58,7 +43,6 @@
 
   .app{display:grid;grid-template-rows:auto 1fr auto;min-height:100vh}
 
-  /* HEADER */
   header.bar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 28px;background:rgba(255,255,255,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
   .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
   .brand .logo{width:36px;height:36px;border-radius:9px;background:var(--gradient-teal);display:grid;place-items:center;box-shadow:var(--shadow-teal)}
@@ -74,12 +58,11 @@
   nav.menu button svg{width:14px;height:14px}
   nav.menu .divider{width:1px;height:20px;background:var(--line);margin:0 6px}
 
-  main{padding:32px 28px;max-width:1280px;margin:0 auto;width:100%}
+  main{padding:32px 28px;max-width:1320px;margin:0 auto;width:100%}
   @media(max-width:700px){main{padding:20px 16px}}
 
-  /* WIZARD */
-  .wizard{max-width:820px;margin:0 auto}
-  .stepper{display:flex;align-items:center;gap:0;padding:18px 24px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);margin-bottom:24px}
+  .wizard{max-width:880px;margin:0 auto}
+  .stepper{display:flex;align-items:center;padding:18px 24px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);margin-bottom:24px}
   .step-item{display:flex;align-items:center;gap:10px;flex:1}
   .step-num{flex-shrink:0;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-weight:600;font-size:13px;background:var(--bg-2);color:var(--txt-3);border:2px solid var(--line);transition:all .25s}
   .step-item.done .step-num{background:var(--teal);color:#fff;border-color:var(--teal)}
@@ -93,29 +76,19 @@
   .step-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:40px;box-shadow:var(--shadow)}
   @media(max-width:640px){.step-card{padding:28px 22px}}
   .step-card .eyebrow{font-size:11px;color:var(--teal);font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px}
-  .step-card h1{font-family:var(--inter);font-size:32px;font-weight:700;letter-spacing:-0.025em;line-height:1.15;margin:0 0 12px;color:var(--txt)}
-  .step-card h1 em{color:var(--teal);font-style:normal;font-weight:700}
+  .step-card h1{font-size:32px;font-weight:700;letter-spacing:-0.025em;line-height:1.15;margin:0 0 12px}
+  .step-card h1 em{color:var(--teal);font-style:normal}
   .step-card .lede{font-size:15.5px;line-height:1.65;color:var(--txt-2);margin:0 0 28px;max-width:580px}
 
-  /* MULTI-URL TEXTAREA */
-  .urls-textarea-wrap{
-    background:var(--bg-soft);border:2px solid var(--line-2);border-radius:var(--radius);
-    transition:all .15s;overflow:hidden;
-  }
+  .urls-textarea-wrap{background:var(--bg-soft);border:2px solid var(--line-2);border-radius:var(--radius);overflow:hidden;transition:all .15s}
   .urls-textarea-wrap:focus-within{border-color:var(--teal);box-shadow:0 0 0 4px var(--teal-glow);background:var(--surface)}
-  .urls-textarea-wrap textarea{
-    width:100%;background:transparent;border:none;outline:none;resize:vertical;
-    padding:16px 18px;font-family:var(--mono);font-size:13.5px;color:var(--txt);min-height:120px;line-height:1.6;
-  }
+  .urls-textarea-wrap textarea{width:100%;background:transparent;border:none;outline:none;resize:vertical;padding:16px 18px;font-family:var(--mono);font-size:13.5px;color:var(--txt);min-height:120px;line-height:1.6}
   .urls-textarea-wrap textarea::placeholder{color:var(--txt-faint)}
-  .urls-foot{
-    border-top:1px solid var(--line);padding:10px 14px;background:var(--bg-2);
-    display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;
-  }
+  .urls-foot{border-top:1px solid var(--line);padding:10px 14px;background:var(--bg-2);display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
   .url-detect-summary{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px;color:var(--txt-3)}
   .url-detect-summary .count{font-weight:600;color:var(--txt)}
 
-  .btn-primary{background:var(--gradient-teal);color:#fff;border:none;padding:10px 20px;border-radius:8px;font-weight:600;font-size:13px;letter-spacing:-0.005em;cursor:pointer;box-shadow:var(--shadow-teal);transition:all .2s;display:inline-flex;align-items:center;gap:7px}
+  .btn-primary{background:var(--gradient-teal);color:#fff;border:none;padding:10px 20px;border-radius:8px;font-weight:600;font-size:13px;cursor:pointer;box-shadow:var(--shadow-teal);transition:all .2s;display:inline-flex;align-items:center;gap:7px}
   .btn-primary:hover{transform:translateY(-1px);box-shadow:0 12px 32px hsl(178 68% 55% / 0.3)}
   .btn-primary:disabled{opacity:.5;cursor:not-allowed;transform:none}
 
@@ -125,30 +98,17 @@
   .pp-instagram{background:#fbe9f4;color:#a4448a}
   .pp-other{background:var(--bg-2);color:var(--txt-3)}
 
-  .recent-strip{margin-top:32px;padding-top:24px;border-top:1px dashed var(--line)}
-  .recent-strip .label{font-size:11px;color:var(--txt-3);letter-spacing:.14em;text-transform:uppercase;font-weight:600;margin-bottom:12px}
-  .recent-strip .items{display:flex;flex-wrap:wrap;gap:8px}
-  .recent-chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;background:var(--bg-soft);border:1px solid var(--line);border-radius:99px;font-size:12.5px;color:var(--txt-2);cursor:pointer;transition:all .15s;max-width:280px;border:1px solid var(--line);font-family:var(--inter)}
-  .recent-chip:hover{border-color:var(--teal-mid);background:var(--teal-soft)}
-  .recent-chip span.t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-
-  /* BATCH PROGRESS LIST */
-  .batch-summary{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:14px 18px;background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:18px;
-  }
+  /* PROGRESS LIST */
+  .batch-summary{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:18px}
   .batch-summary .stats{display:flex;gap:18px;font-size:13px;color:var(--txt-2)}
   .batch-summary .stats b{color:var(--txt);font-weight:600}
-  .batch-summary .right-actions{display:flex;gap:8px}
-
   .progress-list{display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
-  .pitem{
-    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
-    transition:all .2s;
-  }
+  .pitem{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:all .2s}
   .pitem.done{border-color:var(--green)}
   .pitem.failed{border-color:var(--red);background:#fbe9e9}
-  .pitem-row{padding:16px 18px;display:flex;align-items:center;gap:14px}
+  .pitem-row{padding:12px 16px;display:flex;align-items:center;gap:14px}
+  .pitem-thumb{flex-shrink:0;width:72px;height:48px;border-radius:6px;background:var(--bg-2);overflow:hidden;display:grid;place-items:center;color:var(--txt-3)}
+  .pitem-thumb img{width:100%;height:100%;object-fit:cover;display:block}
   .pitem-icon{flex-shrink:0;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--bg-2);color:var(--txt-3)}
   .pitem.processing .pitem-icon{background:var(--gradient-teal);color:#fff}
   .pitem.done .pitem-icon{background:var(--green);color:#fff}
@@ -157,42 +117,27 @@
   .pitem-title{font-weight:600;font-size:13.5px;color:var(--txt);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .pitem-sub{display:flex;gap:10px;align-items:center;font-size:12px;color:var(--txt-3);margin-top:3px;flex-wrap:wrap}
   .pitem-actions{display:flex;gap:6px;align-items:center}
-  .progress-bar{
-    height:4px;background:var(--bg-2);border-top:1px solid var(--line);position:relative;overflow:hidden;
-  }
-  .progress-bar-fill{
-    height:100%;background:var(--gradient-teal);transition:width .5s linear;
-    box-shadow:0 0 12px hsl(178 68% 55% / 0.4);
-  }
+  .progress-bar{height:4px;background:var(--bg-2);border-top:1px solid var(--line);position:relative;overflow:hidden}
+  .progress-bar-fill{height:100%;background:var(--gradient-teal);transition:width .5s linear;box-shadow:0 0 12px hsl(178 68% 55% / 0.4)}
   .pitem.done .progress-bar-fill{background:var(--green);box-shadow:none}
   .pitem.failed .progress-bar-fill{background:var(--red);box-shadow:none}
-  .progress-bar-fill.indeterminate{
-    width:30% !important;
-    animation:indeterminate 1.6s ease-in-out infinite;
-  }
-  @keyframes indeterminate{
-    0%{margin-left:-30%}
-    50%{margin-left:50%}
-    100%{margin-left:100%}
-  }
-
-  .eta-pill{
-    display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:99px;
-    background:var(--teal-soft);color:var(--teal);font-size:11px;font-weight:600;font-family:var(--mono);
-  }
+  .eta-pill{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:99px;background:var(--teal-soft);color:var(--teal);font-size:11px;font-weight:600;font-family:var(--mono)}
   .eta-pill.done{background:#e3f5e8;color:var(--green)}
   .eta-pill.failed{background:#fbe9e9;color:var(--red)}
 
-  .pitem-detail{
-    padding:14px 18px;border-top:1px solid var(--line);background:var(--bg-soft);
-    font-size:12.5px;color:var(--txt-2);line-height:1.55;
-  }
-  .pitem-detail b{color:var(--txt);font-weight:600}
-
-  /* REVIEW (single, also library detail) */
+  /* REVIEW + VIDEO EMBED */
   .review-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden}
-  .review-head{padding:32px 40px 0}
-  @media(max-width:640px){.review-head{padding:24px 22px 0}}
+  .video-embed{background:#000;position:relative;width:100%;aspect-ratio:16/9;max-height:520px}
+  .video-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+  .video-embed.vertical{aspect-ratio:9/16;max-height:640px;background:#000}
+  .video-embed.vertical iframe{max-width:380px;left:50%;transform:translateX(-50%)}
+  .video-thumb-fallback{width:100%;height:100%;background-size:cover;background-position:center;display:grid;place-items:center;position:absolute;inset:0}
+  .video-thumb-fallback .play{width:80px;height:80px;border-radius:50%;background:rgba(0,0,0,0.5);backdrop-filter:blur(6px);display:grid;place-items:center;color:#fff;border:2px solid rgba(255,255,255,0.4);cursor:pointer;transition:all .2s}
+  .video-thumb-fallback .play:hover{background:rgba(0,0,0,0.7);transform:scale(1.05)}
+  .video-thumb-fallback .play svg{width:32px;height:32px;margin-left:4px}
+
+  .review-head{padding:28px 40px 0}
+  @media(max-width:640px){.review-head{padding:22px 22px 0}}
   .review-meta{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--txt-3);margin-bottom:14px;flex-wrap:wrap}
   .review-meta .dot{width:6px;height:6px;border-radius:50%;display:inline-block}
   .d-pending{background:var(--warning);animation:pulse 1.5s infinite}
@@ -200,21 +145,20 @@
   .d-done{background:var(--green)}
   .d-failed{background:var(--red)}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-  .review-meta .author{color:var(--txt-2)}
-  .review-title{font-family:var(--inter);font-size:30px;font-weight:700;letter-spacing:-0.025em;line-height:1.2;margin:0 0 10px;color:var(--txt)}
+  .review-title{font-size:28px;font-weight:700;letter-spacing:-0.025em;line-height:1.2;margin:0 0 10px;color:var(--txt)}
   .review-sub{display:flex;flex-wrap:wrap;gap:14px;color:var(--txt-3);font-size:13px;align-items:center;margin-bottom:24px}
   .review-sub a{color:var(--txt-2);text-decoration:none;border-bottom:1px solid var(--line-2);transition:all .15s}
   .review-sub a:hover{color:var(--teal);border-color:var(--teal)}
   .review-sub .sep{color:var(--line-2)}
   .review-actions{display:flex;flex-wrap:wrap;gap:8px;padding:0 40px 24px;border-bottom:1px solid var(--line)}
   @media(max-width:640px){.review-actions{padding:0 22px 20px}}
+
   .btn{display:inline-flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--line);color:var(--txt);padding:9px 14px;border-radius:8px;font-size:13px;cursor:pointer;font-weight:500;transition:all .15s;text-decoration:none}
   .btn:hover{border-color:var(--teal-mid);color:var(--teal);background:var(--teal-soft)}
   .btn.primary{background:var(--gradient-teal);color:#fff;border-color:var(--teal-mid);font-weight:600;box-shadow:var(--shadow-teal)}
-  .btn.primary:hover{color:#fff;transform:translateY(-1px);box-shadow:0 12px 32px hsl(178 68% 55% / 0.3)}
+  .btn.primary:hover{color:#fff;transform:translateY(-1px)}
   .btn.danger:hover{border-color:var(--red);color:var(--red);background:#fbe9e9}
   .btn.ghost{background:transparent;border-color:transparent}
-  .btn.ghost:hover{background:var(--bg-2);border-color:var(--line)}
   .btn-back{background:transparent;border:none;color:var(--txt-2);font-size:13.5px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:6px;transition:all .15s}
   .btn-back:hover{background:var(--bg-2);color:var(--txt)}
 
@@ -239,60 +183,98 @@
   .vs-unverified{background:#fdf4e0;color:var(--warning)}
   .vs-contradicted{background:#fbe9e9;color:var(--red)}
 
-  /* LIBRARY */
+  /* LIBRARY HEAD + VIEW TOGGLE */
   .lib-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;gap:18px;flex-wrap:wrap}
-  .lib-head h1{font-family:var(--inter);font-size:28px;font-weight:700;letter-spacing:-0.025em;margin:0}
+  .lib-head h1{font-size:28px;font-weight:700;letter-spacing:-0.025em;margin:0}
   .lib-head .count{font-size:13px;color:var(--txt-3);margin-left:8px;font-weight:500}
-  .search-bar{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:8px 8px 8px 16px;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow-sm);transition:all .15s;margin-bottom:18px}
+
+  .view-toggle{display:inline-flex;background:var(--bg-soft);border:1px solid var(--line);border-radius:8px;padding:3px;gap:2px}
+  .view-toggle button{background:transparent;border:none;color:var(--txt-3);padding:6px 12px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:500;display:inline-flex;align-items:center;gap:5px;transition:all .15s}
+  .view-toggle button:hover{color:var(--txt)}
+  .view-toggle button.active{background:var(--surface);color:var(--txt);box-shadow:var(--shadow-sm)}
+  .view-toggle button svg{width:14px;height:14px}
+
+  .search-bar{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:8px 8px 8px 16px;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow-sm);transition:all .15s;margin-bottom:14px}
   .search-bar:focus-within{border-color:var(--teal);box-shadow:0 0 0 4px var(--teal-glow)}
   .search-bar svg{flex-shrink:0;color:var(--txt-3);width:16px;height:16px}
-  .search-bar input{flex:1;background:transparent;border:none;outline:none;font-size:14px;color:var(--txt);font-family:var(--inter);padding:8px 0}
+  .search-bar input{flex:1;background:transparent;border:none;outline:none;font-size:14px;color:var(--txt);padding:8px 0}
   .search-bar input::placeholder{color:var(--txt-3)}
   .search-bar kbd{font-size:11px;color:var(--txt-3);background:var(--bg-2);border:1px solid var(--line);padding:3px 6px;border-radius:4px;font-family:var(--mono)}
   .search-bar .clear{background:transparent;border:none;color:var(--txt-3);cursor:pointer;padding:6px 10px;border-radius:6px;font-size:12px}
-  .search-bar .clear:hover{background:var(--bg-2);color:var(--txt)}
 
   .filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
   .filters .chip{background:var(--surface);border:1px solid var(--line);color:var(--txt-2);padding:6px 13px;border-radius:99px;font-size:12.5px;cursor:pointer;font-weight:500;transition:all .15s}
   .filters .chip.active{background:var(--txt);color:#fff;border-color:var(--txt)}
   .filters .chip:hover:not(.active){border-color:var(--teal-mid);color:var(--teal)}
 
+  /* GRID VIEW */
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
   .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;box-shadow:var(--shadow-sm)}
   .card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:var(--teal-mid)}
-  .card-top{padding:18px 20px 14px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-  .card-platform{display:flex;align-items:center;gap:8px}
-  .card-status{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--txt-3);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
-  .card-title{padding:0 20px;font-size:15.5px;font-weight:600;letter-spacing:-0.01em;line-height:1.4;color:var(--txt);margin:0 0 8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  .card-author{padding:0 20px;font-size:12.5px;color:var(--txt-3);margin-bottom:14px}
-  .card-summary{padding:0 20px 16px;font-size:13px;color:var(--txt-2);line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;flex:1}
-  .card-foot{padding:12px 20px;border-top:1px solid var(--line);background:var(--bg-soft);display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:var(--txt-3)}
+  .card-thumb{width:100%;aspect-ratio:16/9;background:var(--bg-2);position:relative;overflow:hidden}
+  .card-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .card-thumb .platform-overlay{position:absolute;top:8px;left:8px}
+  .card-thumb .duration-overlay{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.75);color:#fff;padding:2px 7px;border-radius:4px;font-size:11px;font-weight:600;font-family:var(--mono)}
+  .card-thumb-empty{width:100%;height:100%;display:grid;place-items:center;color:var(--txt-faint)}
+  .card-thumb-empty svg{width:32px;height:32px}
+  .card-body{padding:14px 18px;flex:1;display:flex;flex-direction:column}
+  .card-title{font-size:15px;font-weight:600;letter-spacing:-0.01em;line-height:1.4;color:var(--txt);margin:0 0 6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .card-author{font-size:12px;color:var(--txt-3);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+  .card-summary{font-size:13px;color:var(--txt-2);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;flex:1;margin-bottom:10px}
+  .card-foot{padding:8px 18px;border-top:1px solid var(--line);background:var(--bg-soft);display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:var(--txt-3)}
   .card-foot .badges{display:flex;gap:6px}
   .card-foot .badge{padding:2px 8px;border-radius:99px;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
   .badge-skill{background:var(--teal-soft);color:var(--teal)}
   .badge-star{background:#fef4e0;color:var(--warning)}
+  .badge-status{display:inline-flex;align-items:center;gap:4px}
 
-  .empty-grid{grid-column:1/-1;text-align:center;padding:60px 24px;color:var(--txt-3);background:var(--bg-soft);border:1px dashed var(--line-2);border-radius:var(--radius-lg)}
-  .empty-grid h3{font-family:var(--inter);font-size:18px;color:var(--txt-2);font-weight:600;margin:0 0 8px}
+  /* TABLE VIEW */
+  .table-wrap{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm)}
+  .vtable{width:100%;border-collapse:collapse;font-size:13px}
+  .vtable thead th{
+    background:var(--bg-soft);text-align:left;padding:12px 14px;font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;
+    color:var(--txt-3);font-weight:600;border-bottom:1px solid var(--line);white-space:nowrap;
+  }
+  .vtable tbody tr{border-bottom:1px solid var(--line);cursor:pointer;transition:background .12s}
+  .vtable tbody tr:hover{background:var(--bg-soft)}
+  .vtable tbody tr:last-child{border-bottom:none}
+  .vtable td{padding:11px 14px;vertical-align:middle;color:var(--txt-2)}
+  .vtable td.col-thumb{width:80px;padding:8px 0 8px 14px}
+  .vtable td.col-thumb .tt{width:64px;height:40px;border-radius:5px;overflow:hidden;background:var(--bg-2);display:grid;place-items:center;color:var(--txt-faint)}
+  .vtable td.col-thumb .tt img{width:100%;height:100%;object-fit:cover}
+  .vtable td.col-thumb .tt svg{width:18px;height:18px}
+  .vtable td.col-title{max-width:340px;color:var(--txt);font-weight:500}
+  .vtable td.col-title .ttl{overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;line-height:1.4}
+  .vtable td.col-title .sub{font-size:11.5px;color:var(--txt-3);margin-top:2px}
+  .vtable td.col-platform{width:90px}
+  .vtable td.col-dur{width:60px;color:var(--txt-3);font-family:var(--mono);font-size:12px;text-align:right}
+  .vtable td.col-date{width:90px;color:var(--txt-3);font-size:12px;white-space:nowrap}
+  .vtable td.col-status{width:110px}
+  .vtable td.col-status .badge-status{padding:3px 9px;border-radius:99px;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;display:inline-flex;align-items:center;gap:5px}
+  .badge-done{background:#e3f5e8;color:var(--green)}
+  .badge-processing{background:var(--teal-soft);color:var(--teal)}
+  .badge-pending{background:#fdf4e0;color:var(--warning)}
+  .badge-failed{background:#fbe9e9;color:var(--red)}
+  .vtable td.col-flags{width:100px}
+  .vtable td.col-flags .badges{display:flex;gap:4px}
+
+  .empty-grid{text-align:center;padding:60px 24px;color:var(--txt-3);background:var(--bg-soft);border:1px dashed var(--line-2);border-radius:var(--radius-lg)}
+  .empty-grid h3{font-size:18px;color:var(--txt-2);font-weight:600;margin:0 0 8px}
   .empty-grid p{font-size:14px;line-height:1.5;margin:0}
 
-  /* MODAL */
   .modal-bg{position:fixed;inset:0;background:hsl(0 0% 0% / 0.4);z-index:100;display:grid;place-items:center;padding:20px;backdrop-filter:blur(6px)}
   .modal{background:var(--surface);border-radius:var(--radius-lg);max-width:820px;width:100%;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-lg)}
   .modal-head{padding:20px 26px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
-  .modal-head h2{margin:0;font-family:var(--inter);font-size:18px;font-weight:700;color:var(--txt);letter-spacing:-0.01em}
-  .modal-head .close{background:transparent;border:none;color:var(--txt-3);font-size:22px;cursor:pointer;padding:4px 10px;border-radius:6px;line-height:1}
-  .modal-head .close:hover{color:var(--txt);background:var(--bg-2)}
+  .modal-head h2{margin:0;font-size:18px;font-weight:700;letter-spacing:-0.01em}
+  .modal-head .close{background:transparent;border:none;color:var(--txt-3);font-size:22px;cursor:pointer;padding:4px 10px;border-radius:6px}
   .modal-content{padding:24px 26px;overflow:auto;flex:1}
-  .modal-content textarea{width:100%;background:var(--bg-soft);border:1px solid var(--line-2);color:var(--txt);border-radius:8px;padding:14px;font-family:var(--mono);font-size:12.5px;line-height:1.6;resize:vertical;outline:none}
-  .modal-content textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px var(--teal-glow);background:var(--surface)}
+  .modal-content textarea{width:100%;background:var(--bg-soft);border:1px solid var(--line-2);color:var(--txt);border-radius:8px;padding:14px;font-family:var(--mono);font-size:12.5px;line-height:1.6;outline:none}
   .modal-content textarea.tall{min-height:380px}
   .modal-foot{padding:14px 26px;border-top:1px solid var(--line);background:var(--bg-soft);display:flex;justify-content:space-between;align-items:center;gap:10px}
   .hint{font-size:12px;color:var(--txt-3);line-height:1.55}
 
   footer.foot{padding:20px 28px;border-top:1px solid var(--line);background:var(--bg-soft);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--txt-3)}
   footer.foot a{color:var(--teal);text-decoration:none;font-weight:600}
-  footer.foot a:hover{text-decoration:underline}
 
   .toast-wrap{position:fixed;top:80px;right:24px;display:flex;flex-direction:column;gap:8px;z-index:200}
   .toast{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--teal);color:var(--txt);padding:12px 18px;border-radius:8px;font-size:13px;box-shadow:var(--shadow-lg);min-width:260px;animation:slideIn .25s}
@@ -308,11 +290,8 @@
   .settings-row{display:grid;gap:18px}
   .settings-row label{font-size:11px;color:var(--txt-3);display:block;margin-bottom:6px;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
   .settings-row input{width:100%;background:var(--bg-soft);border:1px solid var(--line-2);color:var(--txt);padding:10px 14px;border-radius:8px;font-family:var(--mono);font-size:13px;outline:none}
-  .settings-row input:focus{border-color:var(--teal);box-shadow:0 0 0 3px var(--teal-glow);background:var(--surface)}
-
   .hide-mobile{}
   @media(max-width:640px){.hide-mobile{display:none}}
-  .text-mono{font-family:var(--mono)}
 </style>
 </head>
 <body>
@@ -322,9 +301,6 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'https://esm.sh/react@18.3.1';
 import { createRoot } from 'https://esm.sh/react-dom@18.3.1/client';
 
-// ============================================================================
-// CONFIG
-// ============================================================================
 const CONFIG = {
   SUPABASE_URL: 'https://vaerkevjrupxdbgrxfkk.supabase.co',
   SUPABASE_ANON_KEY: 'sb_publishable_elUUmJXjGMXfJ8RBhZkBvA_yTeSjXR_',
@@ -332,9 +308,6 @@ const CONFIG = {
 };
 const sb = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
 
-// ============================================================================
-// HELPERS
-// ============================================================================
 const detectPlatform = (url) => {
   if (!url) return 'other';
   const u = url.toLowerCase();
@@ -368,52 +341,65 @@ const fmtSeconds = (sec) => {
   const m = Math.floor(sec/60), s = Math.round(sec%60);
   return m + 'm ' + s + 's';
 };
-
-// Parse multiple URLs from a paste — splits on whitespace, commas, semicolons, newlines
 const parseUrls = (text) => {
   if (!text) return [];
   const parts = text.split(/[\s,;]+/).map(s => s.trim()).filter(Boolean);
   const seen = new Set();
-  return parts.filter(p => {
-    if (!/^https?:\/\//i.test(p)) return false;
-    if (seen.has(p)) return false;
-    seen.add(p);
-    return true;
-  });
+  return parts.filter(p => { if (!/^https?:\/\//i.test(p)) return false; if (seen.has(p)) return false; seen.add(p); return true; });
 };
+const estimatePipelineSeconds = (platform) => ({youtube:12, tiktok:22, instagram:28, other:22}[platform] || 22);
 
-// Estimated total pipeline time (seconds) by platform.
-// Based on observed: native captions ~3-8s, Whisper ~10-25s, ElevenLabs ~15-30s.
-const estimatePipelineSeconds = (platform) => ({
-  youtube: 12,
-  tiktok: 22,
-  instagram: 28,
-  other: 22,
-}[platform] || 22);
-
-// Compute live progress for a row based on its created_at + status.
 const computeProgress = (link, now) => {
-  if (!link) return { pct: 0, eta: null, elapsed: 0, label: '—', stage: 'pending' };
-  if (link.status === 'done') return { pct: 100, eta: 0, elapsed: 0, label: 'Done', stage: 'done' };
-  if (link.status === 'failed') return { pct: 100, eta: 0, elapsed: 0, label: 'Failed', stage: 'failed' };
+  if (!link) return { pct: 0, eta: null, elapsed: 0, stage: 'pending' };
+  if (link.status === 'done') return { pct: 100, eta: 0, elapsed: 0, stage: 'done' };
+  if (link.status === 'failed') return { pct: 100, eta: 0, elapsed: 0, stage: 'failed' };
   const startMs = new Date(link.created_at || Date.now()).getTime();
   const elapsed = (now - startMs) / 1000;
   const total = estimatePipelineSeconds(link.platform);
   const eta = Math.max(0, total - elapsed);
-  // Asymptote: cap at 92% until backend says done.
-  // Curve: fast first 60%, slow after.
   const raw = elapsed / total;
   let pct;
-  if (raw < 0.6) pct = raw * 100 * 1.0;       // 0-60% in first 60% of estimate
-  else if (raw < 1.0) pct = 60 + (raw - 0.6) * 70; // 60-88% in remaining 40%
-  else pct = Math.min(92, 88 + (raw - 1.0) * 4);   // crawl from 88-92% past estimate
-  return {
-    pct: Math.min(92, Math.max(2, pct)),
-    eta,
-    elapsed,
-    label: link.status === 'processing' ? 'Processing' : 'Queued',
-    stage: link.status,
-  };
+  if (raw < 0.6) pct = raw * 100;
+  else if (raw < 1.0) pct = 60 + (raw - 0.6) * 70;
+  else pct = Math.min(92, 88 + (raw - 1.0) * 4);
+  return { pct: Math.min(92, Math.max(2, pct)), eta, elapsed, stage: link.status };
+};
+
+// Extract video ID for embed URLs
+const getVideoId = (url, platform) => {
+  if (!url) return null;
+  if (platform === 'youtube') {
+    const m = url.match(/(?:v=|\/shorts\/|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+    return m ? m[1] : null;
+  }
+  if (platform === 'tiktok') {
+    const m = url.match(/\/video\/(\d+)/);
+    return m ? m[1] : null;
+  }
+  if (platform === 'instagram') {
+    const m = url.match(/\/(?:reel|reels|p|tv)\/([A-Za-z0-9_-]+)/);
+    return m ? m[1] : null;
+  }
+  return null;
+};
+
+// Get embed URL
+const getEmbedUrl = (link) => {
+  const id = link.video_id || getVideoId(link.url, link.platform);
+  if (!id) return null;
+  if (link.platform === 'youtube') return `https://www.youtube.com/embed/${id}`;
+  if (link.platform === 'instagram') return `https://www.instagram.com/p/${id}/embed/`;
+  // TikTok embed
+  if (link.platform === 'tiktok') return `https://www.tiktok.com/embed/v2/${id}`;
+  return null;
+};
+
+// Fallback thumbnail URL when DB doesn't have one
+const getFallbackThumb = (link) => {
+  if (link.thumbnail_url) return link.thumbnail_url;
+  const id = link.video_id || getVideoId(link.url, link.platform);
+  if (link.platform === 'youtube' && id) return `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+  return null;
 };
 
 const buildSkillPrompt = (link) => {
@@ -456,9 +442,6 @@ ${link.transcript || '(no transcript)'}
 Sign off as "Mike" if you write any test artifacts.`;
 };
 
-// ============================================================================
-// ICONS
-// ============================================================================
 const I = {
   search: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>,
   plus: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><path d="M12 5v14M5 12h14"/></svg>,
@@ -468,25 +451,23 @@ const I = {
   starOff: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
   copy: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>,
   trash: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><polyline points="3 6 5 6 21 6"/><path d="m19 6-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>,
-  sparkles: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>,
+  sparkles: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><path d="M12 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z"/></svg>,
   ext: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>,
   back: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>,
   next: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>,
   check: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" {...p}><polyline points="20 6 9 17 4 12"/></svg>,
   x: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="6"/></svg>,
-  refresh: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>,
   eye: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>,
+  play: (p) => <svg viewBox="0 0 24 24" fill="currentColor" {...p}><path d="M8 5v14l11-7z"/></svg>,
+  film: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg>,
+  grid: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>,
+  table: (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><path d="M3 3h18v18H3zM3 9h18M3 15h18M9 3v18M15 3v18"/></svg>,
 };
 
-// ============================================================================
-// HEADER
-// ============================================================================
 const LogoMark = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M5 4 L5 20 L12 20"/>
-    <path d="M5 12 L12 12"/>
-    <circle cx="17" cy="9" r="2" fill="currentColor" stroke="none"/>
-    <path d="M17 11 L17 20"/>
+    <path d="M5 4 L5 20 L12 20"/><path d="M5 12 L12 12"/>
+    <circle cx="17" cy="9" r="2" fill="currentColor" stroke="none"/><path d="M17 11 L17 20"/>
   </svg>
 );
 
@@ -500,27 +481,15 @@ const Header = ({ view, setView, onSettings, count }) => (
       </div>
     </a>
     <nav className="menu">
-      <button className={view==='wizard'?'active':''} onClick={()=>setView('wizard')}>
-        <I.plus/> <span className="hide-mobile">New</span>
-      </button>
-      <button className={view==='library'?'active':''} onClick={()=>setView('library')}>
-        <I.library/> <span className="hide-mobile">Library</span>{count>0 && <span style={{fontSize:11,color:'var(--txt-3)'}}>· {count}</span>}
-      </button>
+      <button className={view==='wizard'?'active':''} onClick={()=>setView('wizard')}><I.plus/> <span className="hide-mobile">New</span></button>
+      <button className={view==='library'?'active':''} onClick={()=>setView('library')}><I.library/> <span className="hide-mobile">Library</span>{count>0 && <span style={{fontSize:11,color:'var(--txt-3)'}}>· {count}</span>}</button>
       <span className="divider"/>
       <button onClick={onSettings}><I.settings/></button>
     </nav>
   </header>
 );
 
-// ============================================================================
-// STEPPER
-// ============================================================================
-const STEPS = [
-  { id: 1, label: 'Add' },
-  { id: 2, label: 'Process' },
-  { id: 3, label: 'Review' },
-];
-
+const STEPS = [{id:1,label:'Add'},{id:2,label:'Process'},{id:3,label:'Review'}];
 const Stepper = ({ current }) => (
   <div className="stepper">
     {STEPS.map((s, i) => (
@@ -535,86 +504,47 @@ const Stepper = ({ current }) => (
   </div>
 );
 
-// ============================================================================
-// STEP 1: MULTI-URL ADD
-// ============================================================================
 const StepAdd = ({ onSubmit, busy, recent, onPickRecent }) => {
   const [text, setText] = useState('');
   const urls = useMemo(() => parseUrls(text), [text]);
-
-  // Count by platform
   const platformCounts = useMemo(() => {
     const c = { youtube:0, tiktok:0, instagram:0, other:0 };
     urls.forEach(u => { c[detectPlatform(u)]++; });
     return c;
   }, [urls]);
-
-  const submit = (e) => {
-    e?.preventDefault();
-    if (urls.length === 0 || busy) return;
-    onSubmit(urls);
-  };
-
-  // Estimated batch time = max single (parallel)
-  const estimatedSec = useMemo(() => {
-    if (urls.length === 0) return 0;
-    return Math.max(...urls.map(u => estimatePipelineSeconds(detectPlatform(u))));
-  }, [urls]);
-
+  const submit = (e) => { e?.preventDefault(); if (urls.length === 0 || busy) return; onSubmit(urls); };
+  const estimatedSec = useMemo(() => urls.length === 0 ? 0 : Math.max(...urls.map(u => estimatePipelineSeconds(detectPlatform(u)))), [urls]);
   return (
     <div className="step-card">
       <div className="eyebrow">Step 1 of 3</div>
       <h1>Drop your <em>video links</em></h1>
-      <p className="lede">
-        Paste one URL or many — separated by commas, spaces, or new lines.
-        We'll process them all in parallel and show live progress with estimated times.
-      </p>
-
+      <p className="lede">Paste one URL or many — separated by commas, spaces, or new lines. We'll process them in parallel with live progress.</p>
       <form onSubmit={submit}>
         <div className="urls-textarea-wrap">
-          <textarea
-            value={text}
-            onChange={e=>setText(e.target.value)}
-            placeholder={"https://www.youtube.com/watch?v=...\nhttps://www.tiktok.com/@user/video/...\nhttps://www.instagram.com/reel/..."}
-            disabled={busy}
-            rows={5}
-            autoFocus
-          />
+          <textarea value={text} onChange={e=>setText(e.target.value)} placeholder={"https://www.youtube.com/watch?v=...\nhttps://www.tiktok.com/@user/video/...\nhttps://www.instagram.com/reel/..."} disabled={busy} rows={5} autoFocus/>
           <div className="urls-foot">
             <div className="url-detect-summary">
-              {urls.length === 0 ? (
-                <span>No links yet — paste at least one URL</span>
-              ) : (
-                <>
-                  <span className="count">{urls.length}</span>
-                  <span>{urls.length===1?'link':'links'} detected</span>
-                  {platformCounts.youtube > 0 && <span className="platform-pill pp-youtube">{platformCounts.youtube} YT</span>}
-                  {platformCounts.tiktok > 0 && <span className="platform-pill pp-tiktok">{platformCounts.tiktok} TT</span>}
-                  {platformCounts.instagram > 0 && <span className="platform-pill pp-instagram">{platformCounts.instagram} IG</span>}
-                  {platformCounts.other > 0 && <span className="platform-pill pp-other">{platformCounts.other} ?</span>}
-                  <span style={{color:'var(--txt-3)',marginLeft:6}}>· est ~{fmtSeconds(estimatedSec)} parallel</span>
-                </>
-              )}
+              {urls.length === 0 ? <span>No links yet</span> : (<>
+                <span className="count">{urls.length}</span><span>{urls.length===1?'link':'links'}</span>
+                {platformCounts.youtube>0 && <span className="platform-pill pp-youtube">{platformCounts.youtube} YT</span>}
+                {platformCounts.tiktok>0 && <span className="platform-pill pp-tiktok">{platformCounts.tiktok} TT</span>}
+                {platformCounts.instagram>0 && <span className="platform-pill pp-instagram">{platformCounts.instagram} IG</span>}
+                {platformCounts.other>0 && <span className="platform-pill pp-other">{platformCounts.other} ?</span>}
+                <span style={{color:'var(--txt-3)',marginLeft:6}}>· est ~{fmtSeconds(estimatedSec)}</span>
+              </>)}
             </div>
-            <button
-              type="submit"
-              className="btn-primary"
-              disabled={busy || urls.length === 0}
-            >
-              {busy ? <span className="spinner white"/> : <><I.next/> Process {urls.length > 1 ? `${urls.length} videos` : ''}</>}
-            </button>
+            <button type="submit" className="btn-primary" disabled={busy || urls.length === 0}>{busy ? <span className="spinner white"/> : <><I.next/> Process {urls.length > 1 ? `${urls.length} videos` : ''}</>}</button>
           </div>
         </div>
       </form>
-
       {recent && recent.length > 0 && (
-        <div className="recent-strip">
-          <div className="label">Recent</div>
-          <div className="items">
+        <div style={{marginTop:32,paddingTop:24,borderTop:'1px dashed var(--line)'}}>
+          <div style={{fontSize:11,color:'var(--txt-3)',letterSpacing:'.14em',textTransform:'uppercase',fontWeight:600,marginBottom:12}}>Recent</div>
+          <div style={{display:'flex',flexWrap:'wrap',gap:8}}>
             {recent.slice(0,5).map(l => (
-              <button key={l.id} type="button" className="recent-chip" onClick={()=>onPickRecent(l)}>
+              <button key={l.id} type="button" onClick={()=>onPickRecent(l)} style={{display:'inline-flex',alignItems:'center',gap:8,padding:'8px 12px',background:'var(--bg-soft)',border:'1px solid var(--line)',borderRadius:99,fontSize:12.5,color:'var(--txt-2)',cursor:'pointer',maxWidth:280}}>
                 <span className={'platform-pill pp-' + (l.platform||'other')} style={{padding:'2px 7px',fontSize:10}}>{platformShort(l.platform)}</span>
-                <span className="t">{l.title || l.url}</span>
+                <span style={{overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{l.title || l.url}</span>
               </button>
             ))}
           </div>
@@ -624,47 +554,35 @@ const StepAdd = ({ onSubmit, busy, recent, onPickRecent }) => {
   );
 };
 
-// ============================================================================
-// PROGRESS ITEM (single in-flight task)
-// ============================================================================
 const ProgressItem = ({ link, now, onOpen, onDismiss }) => {
   const prog = computeProgress(link, now);
   const isDone = prog.stage === 'done';
   const isFailed = prog.stage === 'failed';
-  const cls = 'pitem ' + prog.stage;
-  const expanded = isDone || isFailed;
-
+  const thumb = getFallbackThumb(link);
   return (
-    <div className={cls}>
+    <div className={'pitem ' + prog.stage}>
       <div className="pitem-row">
-        <div className="pitem-icon">
-          {isDone ? <I.check/> : isFailed ? <I.x/> : <span className="spinner white"/>}
+        <div className="pitem-thumb">
+          {thumb ? <img src={thumb} alt=""/> : <I.film/>}
         </div>
+        <div className="pitem-icon">{isDone ? <I.check/> : isFailed ? <I.x/> : <span className="spinner white"/>}</div>
         <div className="pitem-body">
           <div className="pitem-title">{link.title || link.url}</div>
           <div className="pitem-sub">
             <span className={'platform-pill pp-' + (link.platform||'other')} style={{padding:'2px 8px',fontSize:10}}>{platformShort(link.platform)}</span>
-            {!expanded && (
-              <>
-                <span className={'eta-pill ' + prog.stage}>
-                  {fmtSeconds(prog.eta)} left
-                </span>
-                <span style={{color:'var(--txt-3)'}}>· {Math.round(prog.pct)}% · {fmtSeconds(prog.elapsed)} elapsed</span>
-              </>
-            )}
-            {isDone && (
-              <>
-                <span className="eta-pill done">Done</span>
-                <span style={{color:'var(--txt-3)'}}>· {link.transcript_source || 'captions'}</span>
-                {link.duration_sec ? <span style={{color:'var(--txt-3)'}}>· {fmtDuration(link.duration_sec)}</span> : null}
-              </>
-            )}
-            {isFailed && (
-              <>
-                <span className="eta-pill failed">Failed</span>
-                <span style={{color:'var(--red)',fontFamily:'var(--mono)',fontSize:11,overflow:'hidden',textOverflow:'ellipsis',maxWidth:340,whiteSpace:'nowrap'}} title={link.error}>{link.error}</span>
-              </>
-            )}
+            {!isDone && !isFailed && (<>
+              <span className={'eta-pill ' + prog.stage}>{fmtSeconds(prog.eta)} left</span>
+              <span style={{color:'var(--txt-3)'}}>· {Math.round(prog.pct)}% · {fmtSeconds(prog.elapsed)} elapsed</span>
+            </>)}
+            {isDone && (<>
+              <span className="eta-pill done">Done</span>
+              <span style={{color:'var(--txt-3)'}}>· {link.transcript_source || 'captions'}</span>
+              {link.duration_sec ? <span style={{color:'var(--txt-3)'}}>· {fmtDuration(link.duration_sec)}</span> : null}
+            </>)}
+            {isFailed && (<>
+              <span className="eta-pill failed">Failed</span>
+              <span style={{color:'var(--red)',fontFamily:'var(--mono)',fontSize:11,overflow:'hidden',textOverflow:'ellipsis',maxWidth:340,whiteSpace:'nowrap'}} title={link.error}>{link.error}</span>
+            </>)}
           </div>
         </div>
         <div className="pitem-actions">
@@ -672,114 +590,87 @@ const ProgressItem = ({ link, now, onOpen, onDismiss }) => {
           {(isDone || isFailed) && <button className="btn ghost" onClick={()=>onDismiss(link.id)}><I.x/></button>}
         </div>
       </div>
-      <div className="progress-bar">
-        <div
-          className="progress-bar-fill"
-          style={{ width: prog.pct + '%' }}
-        />
-      </div>
+      <div className="progress-bar"><div className="progress-bar-fill" style={{ width: prog.pct + '%' }}/></div>
     </div>
   );
 };
 
-// ============================================================================
-// STEP 2: BATCH PROGRESS
-// ============================================================================
 const StepBatchProgress = ({ batch, links, onOpen, onDismiss, onAddMore, onAllDone, onBack }) => {
   const [now, setNow] = useState(Date.now());
-  useEffect(() => {
-    const t = setInterval(() => setNow(Date.now()), 500);
-    return () => clearInterval(t);
-  }, []);
-
-  const items = batch
-    .map(id => links.find(l => l.id === id))
-    .filter(Boolean);
-
-  const counts = items.reduce((c, l) => {
-    c[l.status] = (c[l.status]||0) + 1;
-    return c;
-  }, {});
-
+  useEffect(() => { const t = setInterval(() => setNow(Date.now()), 500); return () => clearInterval(t); }, []);
+  const items = batch.map(id => links.find(l => l.id === id)).filter(Boolean);
+  const counts = items.reduce((c, l) => { c[l.status] = (c[l.status]||0) + 1; return c; }, {});
   const pending = (counts.pending||0) + (counts.processing||0);
   const done = counts.done || 0;
   const failed = counts.failed || 0;
   const allDone = items.length > 0 && pending === 0;
-
-  // Aggregate ETA = max remaining ETA across pending items
-  const aggEta = items
-    .filter(l => l.status === 'pending' || l.status === 'processing')
-    .map(l => computeProgress(l, now).eta)
-    .reduce((max, e) => Math.max(max, e || 0), 0);
-
+  const aggEta = items.filter(l => l.status === 'pending' || l.status === 'processing').map(l => computeProgress(l, now).eta).reduce((max, e) => Math.max(max, e || 0), 0);
   return (
     <div className="step-card">
       <div className="eyebrow">Step 2 of 3 · {items.length} {items.length===1?'video':'videos'}</div>
       <h1>{allDone ? 'All set' : 'Processing'} <em>{items.length>1?`${items.length} videos`:items[0]?.title||'your video'}</em></h1>
-      <p className="lede">
-        {allDone
-          ? `${done} done${failed?`, ${failed} failed`:''}. Click any item to review, or add more.`
-          : `${pending} in flight, ${done} done${failed?`, ${failed} failed`:''}. Backend runs them in parallel.`
-        }
-      </p>
-
+      <p className="lede">{allDone ? `${done} done${failed?`, ${failed} failed`:''}. Click any item to review, or add more.` : `${pending} in flight, ${done} done${failed?`, ${failed} failed`:''}. Backend runs them in parallel.`}</p>
       <div className="batch-summary">
-        <div className="stats">
-          <span><b>{done}</b> done</span>
-          <span><b>{pending}</b> processing</span>
-          {failed > 0 && <span style={{color:'var(--red)'}}><b>{failed}</b> failed</span>}
-        </div>
-        <div className="right-actions">
-          {!allDone && <span className="eta-pill">{fmtSeconds(aggEta)} left</span>}
-          {allDone && <span className="eta-pill done"><I.check style={{width:11,height:11}}/> All done</span>}
-        </div>
+        <div className="stats"><span><b>{done}</b> done</span><span><b>{pending}</b> processing</span>{failed>0 && <span style={{color:'var(--red)'}}><b>{failed}</b> failed</span>}</div>
+        <div>{!allDone ? <span className="eta-pill">{fmtSeconds(aggEta)} left</span> : <span className="eta-pill done"><I.check style={{width:11,height:11}}/> All done</span>}</div>
       </div>
-
-      <div className="progress-list">
-        {items.map(l => (
-          <ProgressItem
-            key={l.id}
-            link={l}
-            now={now}
-            onOpen={onOpen}
-            onDismiss={onDismiss}
-          />
-        ))}
-      </div>
-
+      <div className="progress-list">{items.map(l => <ProgressItem key={l.id} link={l} now={now} onOpen={onOpen} onDismiss={onDismiss}/>)}</div>
       <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginTop:8}}>
         <button className="btn-back" onClick={onBack}><I.back/> Back</button>
         <div style={{display:'flex',gap:8}}>
           <button className="btn" onClick={onAddMore}><I.plus/> Add more</button>
-          {allDone && done === 1 && (
-            <button className="btn-primary" onClick={onAllDone}>
-              Review <I.next/>
-            </button>
-          )}
+          {allDone && done === 1 && <button className="btn-primary" onClick={onAllDone}>Review <I.next/></button>}
         </div>
       </div>
     </div>
   );
 };
 
-// ============================================================================
-// REVIEW (also library detail)
-// ============================================================================
+// VIDEO EMBED COMPONENT
+const VideoEmbed = ({ link }) => {
+  const [showPlayer, setShowPlayer] = useState(false);
+  const embedUrl = getEmbedUrl(link);
+  const thumb = getFallbackThumb(link);
+  const isVertical = link.platform === 'tiktok' || link.platform === 'instagram';
+
+  if (!embedUrl && !thumb) {
+    return null;
+  }
+  return (
+    <div className={'video-embed ' + (isVertical ? 'vertical' : '')}>
+      {showPlayer && embedUrl ? (
+        <iframe
+          src={embedUrl}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          title={link.title || 'Video'}
+        />
+      ) : (
+        <div className="video-thumb-fallback" style={thumb ? { backgroundImage: `url('${thumb}')` } : {}}>
+          {embedUrl ? (
+            <button className="play" onClick={()=>setShowPlayer(true)}>
+              <I.play/>
+            </button>
+          ) : (
+            <a className="play" href={link.url} target="_blank" rel="noreferrer"><I.ext style={{width:24,height:24,marginLeft:0}}/></a>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const ReviewBody = ({ link, onUpdate, onDelete, onSkillPrompt, onBack, onNew, toast, isLibrary }) => {
   if (!link) return null;
   const isDone = link.status === 'done';
   const isFailed = link.status === 'failed';
   const isPending = link.status === 'pending' || link.status === 'processing';
-
-  const copyText = (text, label) => {
-    navigator.clipboard.writeText(text);
-    toast(label + ' copied','success');
-  };
-
+  const copyText = (text, label) => { navigator.clipboard.writeText(text); toast(label + ' copied','success'); };
   return (
     <div className="review-card">
+      <VideoEmbed link={link}/>
       <div className="review-head">
-        {!isLibrary && <div className="eyebrow">Step 3 of 3</div>}
+        {!isLibrary && <div style={{fontSize:11,color:'var(--teal)',fontWeight:700,letterSpacing:'.18em',textTransform:'uppercase',marginBottom:10}}>Step 3 of 3</div>}
         <div className="review-meta">
           <span className={'platform-pill pp-' + (link.platform||'other')}>{platformLabel(link.platform)}</span>
           <span className={'dot d-' + (link.status||'pending')}/>
@@ -789,96 +680,34 @@ const ReviewBody = ({ link, onUpdate, onDelete, onSkillPrompt, onBack, onNew, to
         </div>
         <h1 className="review-title">{link.title || '(untitled)'}</h1>
         <div className="review-sub">
-          {link.author && <span className="author">{link.author}</span>}
+          {link.author && <span style={{color:'var(--txt-2)'}}>{link.author}</span>}
           {link.duration_sec ? <><span className="sep">·</span><span>{fmtDuration(link.duration_sec)}</span></> : null}
-          <span className="sep">·</span>
-          <span>{fmtRelative(link.created_at)}</span>
-          <span className="sep">·</span>
-          <a href={link.url} target="_blank" rel="noreferrer">view source <I.ext style={{width:11,height:11,display:'inline'}}/></a>
+          <span className="sep">·</span><span>{fmtRelative(link.created_at)}</span>
+          <span className="sep">·</span><a href={link.url} target="_blank" rel="noreferrer">view source <I.ext style={{width:11,height:11,display:'inline'}}/></a>
         </div>
       </div>
-
       <div className="review-actions">
         {(isLibrary || onBack) && <button className="btn-back" onClick={onBack} style={{marginRight:'auto'}}><I.back/> Back</button>}
-        <button className="btn" onClick={()=>onUpdate(link.id, {starred: !link.starred})}>
-          <I.star/> {link.starred ? 'Unstar' : 'Star'}
-        </button>
-        {isDone && (
-          <button className="btn primary" onClick={()=>onSkillPrompt(link)}>
-            <I.sparkles/> Skill prompt
-          </button>
-        )}
-        <button className="btn danger" onClick={()=>{
-          if (confirm('Delete this entry?')) onDelete(link.id);
-        }}>
-          <I.trash/> Delete
-        </button>
-        {!isLibrary && isDone && onNew && (
-          <button className="btn-primary" style={{marginLeft:'auto'}} onClick={onNew}>
-            <I.plus/> Add more
-          </button>
-        )}
+        <button className="btn" onClick={()=>onUpdate(link.id, {starred: !link.starred})}><I.star/> {link.starred ? 'Unstar' : 'Star'}</button>
+        {isDone && <button className="btn primary" onClick={()=>onSkillPrompt(link)}><I.sparkles/> Skill prompt</button>}
+        <button className="btn danger" onClick={()=>{ if (confirm('Delete this entry?')) onDelete(link.id); }}><I.trash/> Delete</button>
+        {!isLibrary && isDone && onNew && <button className="btn-primary" style={{marginLeft:'auto'}} onClick={onNew}><I.plus/> Add more</button>}
       </div>
-
       <div className="review-body">
         {isPending && !link.transcript && (
-          <div className="section">
-            <div className="body" style={{color:'var(--txt-3)',padding:'18px 0',display:'flex',alignItems:'center',gap:12}}>
-              <span className="spinner lg"/> Transcription in progress…
-            </div>
-          </div>
+          <div className="section"><div className="body" style={{color:'var(--txt-3)',padding:'18px 0',display:'flex',alignItems:'center',gap:12}}><span className="spinner lg"/> Transcription in progress…</div></div>
         )}
         {isFailed && link.error && (
-          <div className="section">
-            <h3>Error</h3>
-            <div className="body" style={{color:'var(--red)',background:'#fbe9e9',padding:14,borderRadius:8,border:'1px solid #f0c4c4',fontFamily:'var(--mono)',fontSize:13}}>{link.error}</div>
-          </div>
+          <div className="section"><h3>Error</h3><div className="body" style={{color:'var(--red)',background:'#fbe9e9',padding:14,borderRadius:8,border:'1px solid #f0c4c4',fontFamily:'var(--mono)',fontSize:13}}>{link.error}</div></div>
         )}
-        {link.summary && (
-          <div className="section"><h3>Summary</h3><div className="body">{link.summary}</div></div>
-        )}
-        {link.key_points && link.key_points.length > 0 && (
-          <div className="section">
-            <h3>Key Points</h3>
-            <ul className="body">{link.key_points.map((k,i)=><li key={i}>{k}</li>)}</ul>
-          </div>
-        )}
-        {link.verification && link.verification.length > 0 && (
-          <div className="section">
-            <h3>Verification</h3>
-            <div>
-              {link.verification.map((v,i)=>(
-                <div key={i} className="verify-row">
-                  <span className={'verify-status vs-'+(v.status||'unverified')}>{v.status||'?'}</span>
-                  <div style={{flex:1}}>
-                    <div style={{color:'var(--txt)'}}>{v.claim}</div>
-                    {v.note && <div style={{color:'var(--txt-3)',fontSize:12,marginTop:3}}>{v.note}</div>}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-        {link.call_to_action && (
-          <div className="section">
-            <div className="cta-card">
-              <div className="label">Call to action · next 24h</div>
-              <div className="text">{link.call_to_action}</div>
-            </div>
-          </div>
-        )}
+        {link.summary && <div className="section"><h3>Summary</h3><div className="body">{link.summary}</div></div>}
+        {link.key_points && link.key_points.length > 0 && <div className="section"><h3>Key Points</h3><ul className="body">{link.key_points.map((k,i)=><li key={i}>{k}</li>)}</ul></div>}
+        {link.verification && link.verification.length > 0 && <div className="section"><h3>Verification</h3><div>{link.verification.map((v,i)=>(<div key={i} className="verify-row"><span className={'verify-status vs-'+(v.status||'unverified')}>{v.status||'?'}</span><div style={{flex:1}}><div style={{color:'var(--txt)'}}>{v.claim}</div>{v.note && <div style={{color:'var(--txt-3)',fontSize:12,marginTop:3}}>{v.note}</div>}</div></div>))}</div></div>}
+        {link.call_to_action && <div className="section"><div className="cta-card"><div className="label">Call to action · next 24h</div><div className="text">{link.call_to_action}</div></div></div>}
         {link.transcript && (
           <div className="section">
-            <h3>
-              <span>Transcript</span>
-              <button className="btn ghost" style={{fontSize:11,padding:'4px 10px'}} onClick={()=>copyText(link.transcript,'Transcript')}>
-                <I.copy/> copy
-              </button>
-            </h3>
-            <div className="transcript-meta">
-              <span>source: {link.transcript_source || 'unknown'}</span>
-              <span>{link.transcript.length.toLocaleString()} chars</span>
-            </div>
+            <h3><span>Transcript</span><button className="btn ghost" style={{fontSize:11,padding:'4px 10px'}} onClick={()=>copyText(link.transcript,'Transcript')}><I.copy/> copy</button></h3>
+            <div className="transcript-meta"><span>source: {link.transcript_source || 'unknown'}</span><span>{link.transcript.length.toLocaleString()} chars</span></div>
             <div className="transcript">{link.transcript}</div>
           </div>
         )}
@@ -887,94 +716,113 @@ const ReviewBody = ({ link, onUpdate, onDelete, onSkillPrompt, onBack, onNew, to
   );
 };
 
-// ============================================================================
-// LIBRARY
-// ============================================================================
-const Library = ({ links, onOpen, search, setSearch, filter, setFilter, hasSearch, loading }) => {
+// LIBRARY (grid + table views)
+const LibraryGrid = ({ links, onOpen }) => (
+  <div className="grid">
+    {links.map(l => {
+      const thumb = getFallbackThumb(l);
+      return (
+        <div key={l.id} className="card" onClick={()=>onOpen(l)}>
+          <div className="card-thumb">
+            {thumb ? <img src={thumb} alt={l.title || ''}/> : <div className="card-thumb-empty"><I.film/></div>}
+            <span className="platform-overlay"><span className={'platform-pill pp-' + (l.platform||'other')}>{platformShort(l.platform)}</span></span>
+            {l.duration_sec ? <span className="duration-overlay">{fmtDuration(l.duration_sec)}</span> : null}
+          </div>
+          <div className="card-body">
+            <h3 className="card-title">{l.title || l.url}</h3>
+            <div className="card-author"><span className={'dot d-' + (l.status||'pending')}/>{l.author || '—'} · {fmtRelative(l.created_at)}</div>
+            <div className="card-summary">{l.summary || (l.status === 'failed' ? l.error : 'Processing…')}</div>
+          </div>
+          <div className="card-foot">
+            <span>{l.status}</span>
+            <div className="badges">
+              {l.starred && <span className="badge badge-star">★</span>}
+              {l.skill_prompt && <span className="badge badge-skill">Skill</span>}
+            </div>
+          </div>
+        </div>
+      );
+    })}
+  </div>
+);
+
+const LibraryTable = ({ links, onOpen }) => (
+  <div className="table-wrap">
+    <table className="vtable">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Title</th>
+          <th>Platform</th>
+          <th style={{textAlign:'right'}}>Length</th>
+          <th>Status</th>
+          <th>Added</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {links.map(l => {
+          const thumb = getFallbackThumb(l);
+          return (
+            <tr key={l.id} onClick={()=>onOpen(l)}>
+              <td className="col-thumb"><div className="tt">{thumb ? <img src={thumb} alt=""/> : <I.film/>}</div></td>
+              <td className="col-title">
+                <div className="ttl">{l.title || l.url}</div>
+                <div className="sub">{l.author || '—'}</div>
+              </td>
+              <td className="col-platform"><span className={'platform-pill pp-' + (l.platform||'other')}>{platformLabel(l.platform)}</span></td>
+              <td className="col-dur">{l.duration_sec ? fmtDuration(l.duration_sec) : '—'}</td>
+              <td className="col-status"><span className={'badge-status badge-' + (l.status||'pending')}><span className={'dot d-' + (l.status||'pending')}/>{l.status}</span></td>
+              <td className="col-date">{fmtRelative(l.created_at)}</td>
+              <td className="col-flags"><div className="badges">{l.starred && <span className="badge badge-star">★</span>}{l.skill_prompt && <span className="badge badge-skill">Skill</span>}</div></td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  </div>
+);
+
+const Library = ({ links, onOpen, search, setSearch, filter, setFilter, viewMode, setViewMode, hasSearch, loading }) => {
   const searchRef = useRef(null);
   useEffect(() => {
-    const handler = (e) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); searchRef.current?.focus(); }
-    };
+    const handler = (e) => { if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); searchRef.current?.focus(); } };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
   }, []);
-
   return (
     <div>
       <div className="lib-head">
         <h1>Library<span className="count">{links.length} {links.length===1?'video':'videos'}</span></h1>
+        <div className="view-toggle">
+          <button className={viewMode==='grid'?'active':''} onClick={()=>setViewMode('grid')}><I.grid/> Grid</button>
+          <button className={viewMode==='table'?'active':''} onClick={()=>setViewMode('table')}><I.table/> Table</button>
+        </div>
       </div>
       <div className="search-bar">
         <I.search/>
-        <input
-          ref={searchRef}
-          type="text"
-          placeholder="Search across titles, transcripts, summaries, key points, CTAs…"
-          value={search}
-          onChange={e=>setSearch(e.target.value)}
-        />
+        <input ref={searchRef} type="text" placeholder="Search titles, transcripts, summaries, key points, CTAs…" value={search} onChange={e=>setSearch(e.target.value)}/>
         {search && <button className="clear" onClick={()=>setSearch('')}>clear</button>}
         {!search && <kbd>⌘K</kbd>}
       </div>
       <div className="filters">
-        {[
-          {id:'all',label:'All'},
-          {id:'youtube',label:'YouTube'},
-          {id:'tiktok',label:'TikTok'},
-          {id:'instagram',label:'Instagram'},
-          {id:'starred',label:'★ Starred'},
-          {id:'skills',label:'Skill drafts'},
-          {id:'failed',label:'Failed'},
-        ].map(f => (
+        {[{id:'all',label:'All'},{id:'youtube',label:'YouTube'},{id:'tiktok',label:'TikTok'},{id:'instagram',label:'Instagram'},{id:'starred',label:'★ Starred'},{id:'skills',label:'Skill drafts'},{id:'failed',label:'Failed'}].map(f => (
           <button key={f.id} className={'chip ' + (filter===f.id?'active':'')} onClick={()=>setFilter(f.id)}>{f.label}</button>
         ))}
       </div>
       {loading ? (
-        <div className="empty-grid">
-          <div className="spinner lg" style={{marginBottom:14}}/>
-          <p>Searching…</p>
-        </div>
+        <div className="empty-grid"><div className="spinner lg" style={{marginBottom:14}}/><p>Searching…</p></div>
+      ) : links.length === 0 ? (
+        <div className="empty-grid"><h3>{hasSearch ? 'Nothing matches' : 'Library is empty'}</h3><p>{hasSearch ? 'Try a different search term or clear filters.' : 'Add your first video from the New tab.'}</p></div>
+      ) : viewMode === 'table' ? (
+        <LibraryTable links={links} onOpen={onOpen}/>
       ) : (
-        <div className="grid">
-          {links.length === 0 ? (
-            <div className="empty-grid">
-              <h3>{hasSearch ? 'Nothing matches' : 'Library is empty'}</h3>
-              <p>{hasSearch ? 'Try a different search term or clear filters.' : 'Add your first video from the New tab.'}</p>
-            </div>
-          ) : (
-            links.map(l => (
-              <div key={l.id} className="card" onClick={()=>onOpen(l)}>
-                <div className="card-top">
-                  <div className="card-platform">
-                    <span className={'platform-pill pp-' + (l.platform||'other')}>{platformLabel(l.platform)}</span>
-                  </div>
-                  <div className="card-status">
-                    <span className={'dot d-' + (l.status||'pending')}/> {l.status}
-                  </div>
-                </div>
-                <h3 className="card-title">{l.title || l.url}</h3>
-                <div className="card-author">{l.author || '—'} · {fmtRelative(l.created_at)}</div>
-                <div className="card-summary">{l.summary || (l.status === 'failed' ? l.error : 'Processing…')}</div>
-                <div className="card-foot">
-                  <span>{l.duration_sec ? fmtDuration(l.duration_sec) : ''}</span>
-                  <div className="badges">
-                    {l.starred && <span className="badge badge-star">★ Star</span>}
-                    {l.skill_prompt && <span className="badge badge-skill">Skill</span>}
-                  </div>
-                </div>
-              </div>
-            ))
-          )}
-        </div>
+        <LibraryGrid links={links} onOpen={onOpen}/>
       )}
     </div>
   );
 };
 
-// ============================================================================
-// MODALS
-// ============================================================================
 const PromptModal = ({ link, onClose, toast }) => {
   const [prompt, setPrompt] = useState(buildSkillPrompt(link));
   const [savedPrompt, setSavedPrompt] = useState(link.skill_prompt);
@@ -984,27 +832,18 @@ const PromptModal = ({ link, onClose, toast }) => {
     setSavedPrompt(prompt);
     toast('Prompt saved', 'success');
   };
-  const copy = () => {
-    navigator.clipboard.writeText(prompt);
-    toast('Prompt copied — paste into Claude or Claude Code', 'success');
-  };
+  const copy = () => { navigator.clipboard.writeText(prompt); toast('Prompt copied — paste into Claude', 'success'); };
   return (
     <div className="modal-bg" onClick={onClose}>
       <div className="modal" onClick={e=>e.stopPropagation()}>
-        <div className="modal-head">
-          <h2>Skill prompt — paste into Claude</h2>
-          <button className="close" onClick={onClose}><I.x/></button>
-        </div>
+        <div className="modal-head"><h2>Skill prompt — paste into Claude</h2><button className="close" onClick={onClose}><I.x/></button></div>
         <div className="modal-content">
-          <div className="hint" style={{marginBottom:12}}>Auto-built from the video transcript + summary. Edit freely. <b>Save</b> persists it; <b>Copy</b> puts it on your clipboard for Claude.</div>
+          <div className="hint" style={{marginBottom:12}}>Auto-built from the transcript + summary. Edit freely. <b>Save</b> persists it; <b>Copy</b> sends to clipboard for Claude.</div>
           <textarea className="tall" value={prompt} onChange={e=>setPrompt(e.target.value)}/>
         </div>
         <div className="modal-foot">
           <span className="hint">{savedPrompt === prompt ? 'Saved' : 'Unsaved changes'}</span>
-          <div style={{display:'flex',gap:8}}>
-            <button className="btn" onClick={save}>Save</button>
-            <button className="btn primary" onClick={copy}><I.copy/> Copy</button>
-          </div>
+          <div style={{display:'flex',gap:8}}><button className="btn" onClick={save}>Save</button><button className="btn primary" onClick={copy}><I.copy/> Copy</button></div>
         </div>
       </div>
     </div>
@@ -1032,8 +871,8 @@ const SettingsModal = ({ onClose, toast }) => {
             </div>
             <div className="hint" style={{padding:14,background:'var(--bg-soft)',borderRadius:8,border:'1px solid var(--line)'}}>
               <b style={{color:'var(--txt)'}}>Active backend:</b><br/>
-              <span className="text-mono" style={{fontSize:11.5}}>{CONFIG.BACKEND_URL || 'none — local mode'}</span><br/><br/>
-              <b style={{color:'var(--txt)'}}>Pipeline:</b> yt-dlp → OpenAI Whisper → ElevenLabs Scribe (fallback) → Anthropic Claude
+              <span style={{fontFamily:'var(--mono)',fontSize:11.5}}>{CONFIG.BACKEND_URL || 'none — local mode'}</span><br/><br/>
+              <b style={{color:'var(--txt)'}}>Pipeline:</b> yt-dlp → OpenAI Whisper → ElevenLabs (fallback) → GPT-4o-mini summary
             </div>
           </div>
         </div>
@@ -1043,27 +882,25 @@ const SettingsModal = ({ onClose, toast }) => {
   );
 };
 
-const Toast = ({ toasts }) => (
-  <div className="toast-wrap">{toasts.map(t => (<div key={t.id} className={'toast ' + (t.type || '')}>{t.msg}</div>))}</div>
-);
+const Toast = ({ toasts }) => (<div className="toast-wrap">{toasts.map(t => (<div key={t.id} className={'toast ' + (t.type || '')}>{t.msg}</div>))}</div>);
 
-// ============================================================================
-// ROOT APP
-// ============================================================================
 function App() {
-  const [view, setView] = useState('wizard');             // 'wizard' | 'library' | 'library-detail'
+  const [view, setView] = useState('wizard');
   const [wizardStep, setWizardStep] = useState(1);
-  const [batchIds, setBatchIds] = useState([]);            // Active wizard batch
-  const [activeId, setActiveId] = useState(null);          // Currently focused for review
+  const [batchIds, setBatchIds] = useState([]);
+  const [activeId, setActiveId] = useState(null);
   const [allLinks, setAllLinks] = useState([]);
   const [linksFiltered, setLinksFiltered] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('all');
+  const [viewMode, setViewMode] = useState(localStorage.getItem('vi_view_mode') || 'grid');
   const [busy, setBusy] = useState(false);
   const [showPrompt, setShowPrompt] = useState(null);
   const [showSettings, setShowSettings] = useState(false);
   const [toasts, setToasts] = useState([]);
+
+  useEffect(() => { localStorage.setItem('vi_view_mode', viewMode); }, [viewMode]);
 
   const toast = useCallback((msg, type) => {
     const id = Date.now() + Math.random();
@@ -1083,7 +920,6 @@ function App() {
     return () => sb.removeChannel(ch);
   }, [loadAll]);
 
-  // Filter for library view
   useEffect(() => {
     let cancelled = false;
     const run = async () => {
@@ -1123,7 +959,6 @@ function App() {
     return () => { cancelled = true; clearTimeout(t); };
   }, [search, filter, allLinks]);
 
-  // Submit batch
   const submitBatch = async (urls) => {
     if (urls.length === 0) return;
     setBusy(true);
@@ -1135,7 +970,6 @@ function App() {
         if (error) { toast('Insert failed: '+error.message,'error'); continue; }
         ids.push(data.id);
         if (CONFIG.BACKEND_URL) {
-          // Fire-and-forget the backend call (don't await — parallel)
           (async () => {
             try {
               await sb.from('vi_links').update({ status: 'processing' }).eq('id', data.id);
@@ -1173,124 +1007,59 @@ function App() {
     toast('Deleted','success');
   };
 
-  const dismissFromBatch = (id) => {
-    setBatchIds(b => b.filter(x => x !== id));
-  };
+  const dismissFromBatch = (id) => setBatchIds(b => b.filter(x => x !== id));
 
   const openLink = (l) => {
     setActiveId(l.id);
     if (l.status === 'done' || l.status === 'failed') {
-      // From library: open detail; from wizard: go to step 3
-      if (view === 'library') {
-        setView('library-detail');
-      } else {
-        setWizardStep(3);
-      }
+      if (view === 'library') setView('library-detail');
+      else setWizardStep(3);
     } else {
       setView('wizard');
       setWizardStep(2);
     }
   };
 
-  const newWizard = () => {
-    setBatchIds([]);
-    setActiveId(null);
-    setWizardStep(1);
-    setView('wizard');
-  };
+  const newWizard = () => { setBatchIds([]); setActiveId(null); setWizardStep(1); setView('wizard'); };
+  const addMore = () => setWizardStep(1);
 
-  const addMore = () => {
-    setWizardStep(1);
-  };
-
-  const activeLink = useMemo(
-    () => activeId ? allLinks.find(l => l.id === activeId) : null,
-    [activeId, allLinks]
-  );
-
-  const recentLinks = useMemo(
-    () => allLinks.filter(l => l.status === 'done' || l.status === 'failed').slice(0, 5),
-    [allLinks]
-  );
+  const activeLink = useMemo(() => activeId ? allLinks.find(l => l.id === activeId) : null, [activeId, allLinks]);
+  const recentLinks = useMemo(() => allLinks.filter(l => l.status === 'done' || l.status === 'failed').slice(0, 5), [allLinks]);
 
   return (
     <div className="app">
-      <Header
-        view={view==='library-detail'?'library':view}
-        setView={(v)=>{ if (v === 'wizard') newWizard(); else setView(v); }}
-        onSettings={()=>setShowSettings(true)}
-        count={allLinks.length}
-      />
-
+      <Header view={view==='library-detail'?'library':view} setView={(v)=>{ if (v === 'wizard') newWizard(); else setView(v); }} onSettings={()=>setShowSettings(true)} count={allLinks.length}/>
       <main>
         {view === 'wizard' && (
           <div className="wizard">
             <Stepper current={wizardStep}/>
-            {wizardStep === 1 && (
-              <StepAdd onSubmit={submitBatch} busy={busy} recent={recentLinks} onPickRecent={openLink}/>
-            )}
+            {wizardStep === 1 && <StepAdd onSubmit={submitBatch} busy={busy} recent={recentLinks} onPickRecent={openLink}/>}
             {wizardStep === 2 && batchIds.length > 0 && (
               <StepBatchProgress
-                batch={batchIds}
-                links={allLinks}
-                onOpen={openLink}
-                onDismiss={dismissFromBatch}
-                onAddMore={addMore}
-                onAllDone={()=>{
-                  // If exactly 1 done item, jump to review for it
-                  if (batchIds.length === 1) {
-                    setActiveId(batchIds[0]);
-                    setWizardStep(3);
-                  }
-                }}
+                batch={batchIds} links={allLinks}
+                onOpen={openLink} onDismiss={dismissFromBatch} onAddMore={addMore}
+                onAllDone={()=>{ if (batchIds.length === 1) { setActiveId(batchIds[0]); setWizardStep(3); } }}
                 onBack={newWizard}
               />
             )}
             {wizardStep === 3 && activeLink && (
-              <ReviewBody
-                link={activeLink}
-                onUpdate={updateLink}
-                onDelete={deleteLink}
-                onSkillPrompt={(l)=>setShowPrompt(l)}
-                onBack={()=>{ if(batchIds.length>1) setWizardStep(2); else newWizard(); }}
-                onNew={newWizard}
-                toast={toast}
-              />
+              <ReviewBody link={activeLink} onUpdate={updateLink} onDelete={deleteLink} onSkillPrompt={(l)=>setShowPrompt(l)} onBack={()=>{ if(batchIds.length>1) setWizardStep(2); else newWizard(); }} onNew={newWizard} toast={toast}/>
             )}
           </div>
         )}
-
         {view === 'library' && (
-          <Library
-            links={linksFiltered}
-            onOpen={openLink}
-            search={search} setSearch={setSearch}
-            filter={filter} setFilter={setFilter}
-            hasSearch={!!search.trim()}
-            loading={loading}
-          />
+          <Library links={linksFiltered} onOpen={openLink} search={search} setSearch={setSearch} filter={filter} setFilter={setFilter} viewMode={viewMode} setViewMode={setViewMode} hasSearch={!!search.trim()} loading={loading}/>
         )}
-
         {view === 'library-detail' && activeLink && (
           <div className="wizard">
-            <ReviewBody
-              link={activeLink}
-              onUpdate={updateLink}
-              onDelete={deleteLink}
-              onSkillPrompt={(l)=>setShowPrompt(l)}
-              onBack={()=>setView('library')}
-              toast={toast}
-              isLibrary
-            />
+            <ReviewBody link={activeLink} onUpdate={updateLink} onDelete={deleteLink} onSkillPrompt={(l)=>setShowPrompt(l)} onBack={()=>setView('library')} toast={toast} isLibrary/>
           </div>
         )}
       </main>
-
       <footer className="foot">
-        <span>Powered by <a href="https://ai-loren.com" target="_blank" rel="noreferrer">Loren AI</a> · Video Intel v2.1</span>
-        <span className="hide-mobile">{CONFIG.BACKEND_URL ? '⬢ Hosted · parallel processing' : '○ Local mode'}</span>
+        <span>Powered by <a href="https://ai-loren.com" target="_blank" rel="noreferrer">Loren AI</a> · Video Intel v2.3</span>
+        <span className="hide-mobile">{CONFIG.BACKEND_URL ? '⬢ Hosted' : '○ Local mode'}</span>
       </footer>
-
       <Toast toasts={toasts}/>
       {showPrompt && <PromptModal link={showPrompt} onClose={()=>setShowPrompt(null)} toast={toast}/>}
       {showSettings && <SettingsModal onClose={()=>setShowSettings(false)} toast={toast}/>}
